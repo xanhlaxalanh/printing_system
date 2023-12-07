@@ -44,8 +44,7 @@ if (isset($_POST['campus'])) {
             </div>
             <div class="menu-bar">
                 <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
-                <div class="second-option"><a href="../StudentServices/StudentServices.php">dịch vụ của tôi</a></div>
-            </div>
+                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
         </div>
 
         <div class="right-side">
