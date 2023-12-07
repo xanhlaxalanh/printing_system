@@ -12,7 +12,6 @@
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="SSPSServices.css" >
 
 </head>
 <body>

@@ -12,7 +12,6 @@
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="StudentServices.css" >
 
 </head>
 <body>
@@ -113,6 +112,5 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script src="script.js"></script>
 </body>
 </html>

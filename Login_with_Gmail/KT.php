@@ -63,27 +63,53 @@ if (isset($_GET['code'])) {
                 $value = $result->fetch_object();
                 $Role = $value->role;
                 var_dump($Role);
-                $_SESSION['student_id'] = $ID;
+                
+                $get = mysqli_query($conn, "select id,role from users where email = '$user->email' ");
+                $getData = $get->fetch_all(MYSQLI_ASSOC);
+                $ID = $getData[0]['id'];
+
+                $_SESSION['student'] = $ID;
+
                 if ($Role == "Student") {
-                    header('Location: homeAfterLogin_User.php');
+                    header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_User.php');
                 } else {
-                    header('Location: homeAfterLogin_Manage.php');
+                    header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_Manage.php');
                 }
             } else {
+                $_SESSION['Fail_Login'] = True;
+                header('Location: http://localhost/printing_system/Login_with_Gmail/home.php');
+                exit();
+            }
+        } else {
+
+            $email_gg = $user->email;
+            $domain = "@hcmut.edu.vn";
+
+            $position = strpos($email_gg, $domain);
+
+            if ($position !== false) { // && $position == strlen($email_gg) - strlen($domain)){
+                $separate = explode(' ', $_SESSION['user_info']['name']);
+                $Fname = $separate[0];
+                $Lname = substr($_SESSION['user_info']['name'], strlen($Fname) + 1);
+                insertUser($Fname, $Lname, $_SESSION['user_info']['email'], 'Student', $_SESSION['user_info']['gender'], $_SESSION['user_info']['birthday'], '0');
+                $get = mysqli_query($conn, "select id,role from users where email = '$user->email' ");
+                $getData = $get->fetch_all(MYSQLI_ASSOC);
+                $ID = $getData[0]['id'];
+
+                $_SESSION['student'] = $ID;
+
+                header('Location: homeAfterLogin_User.php');
+            } else {
+
                 $_SESSION['Fail_Login'] = True;
                 header('Location: home.php');
                 exit();
             }
-        } else {
-            $separate = explode(' ', $_SESSION['user_info']['name']);
-            $Fname = $separate[0];
-            $Lname = substr($_SESSION['user_info']['name'], strlen($Fname) + 1);
-            insertUser($Fname, $Lname, $_SESSION['user_info']['email'], 'Student', $_SESSION['user_info']['gender'], $_SESSION['user_info']['birthday'], '0');
-            $get = mysqli_query($conn, "select id,role from users where email = '$user->email' ");
-            $getData = $get->fetch_all(MYSQLI_ASSOC);
-            $ID = $getData[0]['id'];
-            $_SESSION['student_id'] = $ID;
         }
     }
 }
 ?>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+</script>
