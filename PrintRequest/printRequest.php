@@ -135,7 +135,6 @@ if (isset($_POST['campus'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth.js/1.4.0/mammoth.browser.min.js"></script>
 </head>
 
 <body>
@@ -292,8 +291,30 @@ if (isset($_POST['campus'])) {
                     // Clear the file input to prevent uploading the invalid file
                     fileInput.value = '';
                 } else {
-                    var fileName = fileInput.files[0].name;
+                    var file = fileInput.files[0];
+                    var fileName = file.name;
                     document.getElementById("uploadedFileName").textContent = fileName;
+                    var uploadedFileName = fileName;
+                    var userId = Math.floor(Math.random() * 10000000000000).toString().substring(0, 13); //dummy data
+                    var fileId = btoa(uploadedFileName.substring(0, 10));
+                    $.ajax({
+                        url: 'sendFile.php',
+                        method: 'POST',
+                        data: {
+                            fileId: fileId,
+                            uploadedFileName: uploadedFileName,
+                            userId: userId
+                        },
+                        success: function (response) {
+                            // Handle the response from the server
+                            console.log(response);
+                            console.log("uploadupload");
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            console.log(error);
+                        }
+                    });
                 }
             }
         });
@@ -420,24 +441,6 @@ if (isset($_POST['campus'])) {
             reader.readAsArrayBuffer(file);
         }
 
-        // TODO: countDocxPages
-        // function countDocxPages(file) {
-        //     var reader = new FileReader();
-        //     reader.onload = function (e) {
-        //         var arrayBuffer = e.target.result;
-        //         var docxFile = new Uint8Array(arrayBuffer);
-        //         var options = { arrayBuffer: docxFile };
-
-        //         mammoth.extractRawText(options)
-        //             .then(function (result) {
-        //                 var text = result.value;
-        //                 var numPages = Math.ceil(text.length / 1800); // need to assume 
-        //                 document.getElementById("uploadedFileName").textContent += ' (' + numPages + ' pages)';
-        //             })
-        //             .done();
-        //     };
-        //     reader.readAsArrayBuffer(file);
-        // }
     </script>
 </body>
 
