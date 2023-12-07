@@ -4,13 +4,13 @@
 
 // session_start();
 // $userId = $_SESSION['userId'];
-$userId = 123;
+$userId = 2111392;
 
-if (!isset($userId)) {
-        // Handle the case when the userId is not set
-        echo "User ID is not set in the session";
-        exit;
-}
+// if (!isset($userId)) {
+//         // Handle the case when the userId is not set
+//         echo "User ID is not set in the session";
+//         exit;
+// }
 
 // Retrieve the print attributes from the AJAX request
 $numOfCopies = $_POST['numOfCopiesOption'] ?? '';
@@ -18,15 +18,16 @@ $numOfCopies = $_POST['numOfCopiesOption'] ?? '';
 $creationDate = date('Y-m-d H:i:s');
 $duplex = $_POST['duplexOption'] ?? '';
 $paperSize = $_POST['pageLayoutOption'] ?? '';
-$paperSize= trim($paperSize);
+$paperSize = trim($paperSize);
 $pagesPerSheet = '1';
 
 // Set Total_Sheet as the value of pagesToPrintOption
-$totalSheet = $_POST['pagesToPrintOption'] ?? '';
+$totalSheet = $_POST['pageQuery'] ?? '';
 
 // Create a unique request ID
 // $requestId = uniqid();
-$fileId = 12;
+// $fileId = $_POST['fileId'] ?? '';;
+$fileId = $_POST['fileId'] ?? substr(crc32(uniqid()), 0, 10);
 
 // Establish a database connection
 $host = 'localhost';
@@ -58,6 +59,12 @@ if (empty($paperSize)) {
         echo '<script>console.log("Paper size is missing");</script>';
         exit;
 }
+
+if (empty($totalSheet)) {
+        // Handle the case when the pageQuery is empty
+        echo "Page query is empty";
+        exit;
+}
 // Insert the print attributes into the REQUEST_PRINT table
 $sql = "INSERT INTO print_request (ID, Creation_Date, Pages_Per_Sheet, Number_Of_Copies, Page_Size, `One/Doubled_Sided`, Total_Sheet, Status, File_ID)
         VALUES (:userId, :creationDate, :pagesPerSheet, :numOfCopies, :paperSize, :duplex, :totalSheet, '0', :fileId)";
@@ -75,17 +82,6 @@ $stmt->bindParam(':duplex', $duplex);
 $stmt->bindParam(':totalSheet', $totalSheet);
 $stmt->bindParam(':fileId', $fileId);
 
-// $stmt->bindParam(':orientation', $orientation);
-
-// Execute the SQL statement
-// if($stmt->execute()){
-//         $response = array('success' => true, 'message' => 'Print request sent successfully');
-// echo json_encode($response);
-// } else {
-//         $response = array('success' => true, 'message' => 'Print request failed');
-// echo json_encode($response);
-// }
-// Execute the SQL statement
 if ($stmt->execute()) {
         $response = array('success' => true, 'message' => 'Print request sent successfully');
         echo json_encode($response);
@@ -96,9 +92,5 @@ if ($stmt->execute()) {
         $response = array('success' => true, 'message' => 'Print request failed');
         echo json_encode($response);
         echo '<script>console.log("Print request failed");</script>';
-        
-}
 
-// Return a response to the AJAX request
-// $response = array('success' => true, 'message' => 'Print request sent successfully');
-// echo json_encode($response);
+}
