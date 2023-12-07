@@ -9,13 +9,19 @@ if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
 }
 $fileId = $_POST['fileId'] ?? substr(crc32(uniqid()), 0, 10);
 $fileName = $_POST['uploadedFileName'] ?? '';
+$uploadDate = date('Y-m-d H:i:s');
+if (isset($_POST['fileType'])) {
+    $fileType = $_POST['fileType']  ?? '';
 
+} else {
+    $fileType = '.pdf';
+
+}
 
 // WIP, dummy data
-$fileType = '.pdf';
+// $fileType = '.pdf';
 $fileSize = '3MB';
 $fileLink = 'dummyLink';
-$uploadDate = date('Y-m-d H:i:s');
 $numberOfPages = '5';
 
 

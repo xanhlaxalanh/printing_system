@@ -321,7 +321,8 @@ if (isset($_POST['campus'])) {
                         data: {
                             fileId: fileId,
                             uploadedFileName: uploadedFileName,
-                            userId: userId
+                            userId: userId,
+                            fileType:fileType
                         },
                         success: function (response) {
                             // Handle the response from the server
