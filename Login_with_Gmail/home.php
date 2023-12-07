@@ -137,8 +137,6 @@ $url = $client->createAuthUrl();
                     <!-- swiper js link -->
                     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-                    <!-- custom js file link -->
-                    <script src="script.js"></script>
     </body>
 
     </html>

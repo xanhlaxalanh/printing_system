@@ -69,6 +69,7 @@ if (isset($_GET['code'])) {
                 $ID = $getData[0]['id'];
 
                 $_SESSION['student'] = $ID;
+                $_SESSION['name'] = $user->name;
 
                 if ($Role == "Student") {
                     header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_User.php');
@@ -97,6 +98,7 @@ if (isset($_GET['code'])) {
                 $ID = $getData[0]['id'];
 
                 $_SESSION['student'] = $ID;
+                $_SESSION['name'] = $user->name;
 
                 header('Location: homeAfterLogin_User.php');
             } else {
@@ -112,4 +114,5 @@ if (isset($_GET['code'])) {
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Username", <?php echo $_SESSION['user_info']['name']?>);
 </script>

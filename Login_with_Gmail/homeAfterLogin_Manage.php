@@ -113,7 +113,10 @@
     <!-- swiper js link -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-    <!-- custom js file link -->
-    <script src="script.js"></script>
 </body>
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Username", <?php echo $_SESSION['user_info']['name']?>);
+</script>
