@@ -118,5 +118,5 @@
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
-    localStorage.setItem("Username", <?php echo $_SESSION['user_info']['name']?>);
+    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
 </script>
