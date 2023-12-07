@@ -1,0 +1,2 @@
+Phải tải và giải nén file google-api-php-client--PHP8.2.zip trong Login_with_Gmail thì code mới chạy.
+Do không thể push lên nên tui chỉ để code còn google-api-php-client--PHP8.2.zip tui không đưa lên.

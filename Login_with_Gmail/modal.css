@@ -1,0 +1,75 @@
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    z-index: 1000; /* High z-index to be on top of other content */
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: rgba(0,0,0,0.4); /* Dimmed background */
+    }
+    
+    /* The modal content will be centered with margin auto */
+    .modal-content {
+    position: relative;
+    margin: auto;
+    margin-top: 50vh; /* Initial margin from the top is 50% of the viewport height */
+    transform: translateY(-50%); /* This centers the modal vertically */
+    width: 50%; /* Your desired width */
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+      
+    
+    /* Styling the header of the modal (if any) */
+    .modal-header {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    }
+    
+    /* Styling the body of the modal */
+    .modal-body {
+    margin-bottom: 20px;
+    }
+    
+    /* Styling for input fields */
+    .modal-input {
+    width: calc(100% - 20px); /* full width minus padding */
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    }
+    
+    /* Styling for buttons */
+    .modal-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    }
+    
+    /* Primary button */
+    .modal-button-primary {
+    background-color: #007bff;
+    color: white;
+    }
+    
+    /* Secondary button (like 'Quay lại' in your modal) */
+    .modal-button-secondary {
+    background-color: #6c757d;
+    color: white;
+    }
+    
+    /* Additional styling for other elements can be added here */
+    
+    .modal-body h3 {
+        margin-top: 10px; /* Increase space above the heading */
+        margin-bottom: 10px; /* Increase space below the heading */
+        line-height: 1.5; /* Adjust line height for better readability if necessary */
+      }
