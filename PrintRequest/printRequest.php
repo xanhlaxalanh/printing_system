@@ -1,6 +1,10 @@
 <?php
-
-
+session_start();
+if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
+    $userId = $_SESSION['student_id'];
+} else {
+    $userId = 1234567;
+}
 @include 'database.php';
 $maxfilesize = 50 * 1024; //50MB
 $allowUpload = true;
@@ -111,6 +115,7 @@ if (isset($_POST['campus'])) {
 } else {
     $selectedCampus = null;
 }
+
 
 ?>
 
@@ -295,7 +300,7 @@ if (isset($_POST['campus'])) {
                     var fileName = file.name;
                     document.getElementById("uploadedFileName").textContent = fileName;
                     var uploadedFileName = fileName;
-                    var userId = Math.floor(Math.random() * 10000000000000).toString().substring(0, 13); //dummy data
+                    var userId = var userId = <?php echo json_encode($userId); ?>;
                     var fileId = btoa(uploadedFileName.substring(0, 10));
                     $.ajax({
                         url: 'sendFile.php',

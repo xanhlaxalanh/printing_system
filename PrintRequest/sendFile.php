@@ -1,7 +1,12 @@
 <?php
-
+session_start();
 // Retrieve the file details from the AJAX request
 // $fileId = $_POST['fileId'] ?? '';
+if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
+    $userId = $_SESSION['student_id'];
+} else {
+    $userId = 1234567;
+}
 $fileId = $_POST['fileId'] ?? substr(crc32(uniqid()), 0, 10);
 $fileName = $_POST['uploadedFileName'] ?? '';
 
@@ -12,7 +17,7 @@ $fileSize = '3MB';
 $fileLink = 'dummyLink';
 $uploadDate = date('Y-m-d H:i:s');
 $numberOfPages = '5';
-$userId = $_POST['userId'];
+
 
 $host = 'localhost';
 $dbname = 'printservice';

@@ -1,10 +1,14 @@
 <?php
 // Retrieve the user ID from the session
-
+session_start();
 
 // session_start();
 // $userId = $_SESSION['userId'];
-$userId = 2111392;
+if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
+        $userId = $_SESSION['student_id'];
+} else {
+        $userId = 1234567;
+}
 
 // if (!isset($userId)) {
 //         // Handle the case when the userId is not set
