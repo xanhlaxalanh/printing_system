@@ -1,0 +1,537 @@
+:root {
+    --fontColor: #676c70;
+    --blue: #676c70;
+    --black: #222;
+    --white: #fff;
+    --light-black: #777;
+    --light-white: #fff9;
+    --dark-bg: rgba(0, 0, 0, .7);
+    --light-bg: #eee;
+    --border: .1rem solid var(--black);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+    --text-shadow: 0 1.5rem 3rem rgba(0, 0, 0, .3);
+    --button-background: #428ACA;
+    --blue: #156CC0;
+    --red: #E61313;
+    --line-color: rgba(103, 108, 112, 0.5);
+}
+
+/* button design */
+.button {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #156CC0;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    margin: 0;
+    outline: none;
+    padding: 8px .8em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #b3d3ea;
+    color: #2c5777;
+}
+
+.button:focus {
+    box-shadow: 0 0 0 4px rgba(0, 149, 255, .15);
+}
+
+.button:active {
+    background-color: #a0c7e4;
+    box-shadow: none;
+    color: #2c5777;
+}
+
+/* end button design*/
+
+/* popup design*/
+@keyframes scale {
+    0% {
+        top: 0;
+        transform: translate(-50%, -50%) scale(0.01);
+    }
+
+    100% {
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.popup {
+    font-size: 13px;
+    background: #ffffff;
+    width: 400px;
+    text-align: center;
+    position: absolute;
+    border-radius: 20px;
+    left: 50%;
+    padding: 0 30px 30px;
+    border: 0.5px solid black;
+    top: 50%;
+    animation: scale 0.7s ease;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 99;
+}
+
+.popup img {
+    margin-top: -50px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.popup h2 {
+    font-size: 38px;
+    font-weight: 500;
+    margin: 10px 0 30px;
+}
+
+.popup .button-group {
+    margin-top: 3%;
+}
+
+.popup .button-group button,
+.popup .button-group a {
+    font-size: 15px;
+    margin: 3%;
+    padding: 1%;
+}
+
+/*Table in Popup*/
+.popup .popup_text table tr th {
+    padding: 2%;
+}
+
+.popup .popup_text table .title_ {
+
+    color: var(--blue);
+}
+
+.popup .popup_text table .title_ i {
+    margin-right: 3%;
+}
+
+/*End table in Popup*/
+
+.close-popup {
+    top: 0;
+    transform: translate(-50%, -50%) scale(0.01);
+    visibility: hidden;
+    z-index: -10000000;
+}
+
+.open-popup {
+    display: block;
+}
+
+.body-side section {
+    padding: 2rem 5%;
+    background-color: rgba(253, 232, 232, 0.165)
+}
+
+.body-side {
+    background-color: var(--white);
+    min-height: 582px;
+
+}
+
+.body-side h1 {
+    color: var(--blue);
+    padding-top: 3%;
+    text-align: center;
+    width: 100%;
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+tr:hover {
+    background-color: rgba(134, 130, 129, 0.221);
+}
+
+#searchInput {
+    background-image: url('../images/searchicon.png');
+    background-size: 30px 30px;
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 13px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 8px;
+}
+
+/*.body-side section table thead tr th {
+    padding: 0.5%;
+    color: var(--blue);
+    font-size: 13px;
+}
+
+.body-side section table thead tr th,
+.body-side section table tbody tr td {
+    border: 1px solid #aaa;
+}
+
+style="table-layout: fixed;overflow-y:scroll; height:300px;display:block;"
+style="padding: 0.5%;
+                            color: var(--blue);"
+ activitylog - body
+
+
+.body-side h2 {
+    padding: 1%;
+    color: var(--blue);
+    font-weight: 800;
+}
+
+.body-side section table {
+    font-size: 13px;
+    scroll-behavior: smooth;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    height: 100%;
+}
+
+
+
+.body-side section table tbody tr td {
+    padding: 0.1%;
+    table-layout: fixed;
+}
+*/
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #FFFFFF;
+    z-index: 10;
+    table-layout: fixed;
+    font-size: 14px;
+    color: var(--blue);
+}
+
+td {
+    font-size: 12px;
+    padding: 0.1%;
+    table-layout: fixed;
+}
+
+.payment_link_text {
+    color: red;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Design dropdown */
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    border-style: solid;
+    border-width: 0.5px;
+    right: 0;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    display: block;
+    border-style: solid;
+    border-width: 0.5px;
+}
+
+.dropdown-content a:hover {
+    background-color: #76adec;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: var(--blue);
+}
+
+/*End design dropdown*/
+/* Design delete multiple request button*/
+#delete_multi {
+    padding: 0.3%;
+    float: right;
+    right: 0;
+    margin-top: 1.5%;
+    margin-left: 2%;
+    width: max-content;
+    font-size: 15px;
+}
+
+.delete_range {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 3%;
+    margin: 3%;
+}
+
+.delete_range1 {
+    float: left;
+    width: 50%;
+}
+
+.delete_range::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.delete_range1 p {
+    color: var(--blue);
+    font-weight: 800;
+    margin-top: 7px;
+}
+
+.delete_range1 i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#delete_range_select {
+    border-radius: 20px;
+    padding: 1%;
+    margin-top: 3%;
+}
+
+/* Design Calendar */
+.wrapper {
+    width: 250px;
+    background-color: #0c6fa153;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 15px;
+    text-align: center;
+    transition: all 2s ease;
+    border-radius: 20%;
+    display: none;
+}
+
+.wrapper.display_calendar {
+    display: block;
+}
+
+.wrapper .header-calendar {
+    display: flex;
+    align-items: center;
+    padding: 25px 30px 10px;
+    justify-content: space-between;
+}
+
+.header-calendar .icons {
+    display: flex;
+}
+
+.header-calendar .icons i {
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    color: #878787;
+    text-align: center;
+    line-height: 38px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+}
+
+.icons i:last-child {
+    margin-right: -20px;
+}
+
+.header-calendar .icons i:hover {
+    background: #f2f2f2;
+}
+
+.header-calendar .current-date {
+    font-size: 1.45rem;
+    font-weight: 500;
+}
+
+.calendar {
+    padding: 20px;
+}
+
+.calendar ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    text-align: center;
+}
+
+.calendar .days {
+    margin-bottom: 20px;
+}
+
+.calendar li {
+    color: var(--text-color);
+    width: calc(100% / 7);
+    font-size: 1.1rem;
+}
+
+.calendar .weeks li {
+    font-weight: 500;
+    cursor: default;
+}
+
+.calendar .days li {
+    z-index: 1;
+    cursor: pointer;
+    position: relative;
+    margin-top: 20px;
+}
+
+.calendar .days li span {
+    display: none;
+    visibility: hidden;
+}
+
+.days li.inactive {
+    color: #656f74;
+}
+
+.days li.active {
+    color: var(--white);
+}
+
+.days li.today {
+    color: rgba(255, 0, 0, 0.642);
+    font-weight: 1000;
+}
+
+.days li::before {
+    position: absolute;
+    content: "";
+    left: 50%;
+    top: 50%;
+    height: 25px;
+    width: 25px;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.days li.active::before {
+    background: var(--blue);
+}
+
+.days li:not(.active):hover::before {
+    background: rgba(75, 93, 125, 0.308);
+}
+
+/*spso log*/
+
+
+#spso_log_table {
+    table-layout: fixed;
+    overflow-y: scroll;
+    height: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#spso_log_table col {
+    width: 600px;
+}
+
+#spso_log_table thead tr th {
+    padding: 10px;
+    font-size: 17px;
+}
+
+#spso_log_table tbody tr td {
+    padding: 14px;
+}
+
+#wrap-selectDate {
+    width: 800px;
+    height: 30px;
+    padding: 2rem 5%;
+    display: inline-flex;
+    width: 100%;
+}
+
+.wrapper-selectDate {
+    width: 100%;
+    text-align: center;
+}
+
+.wrapper-selectDate p,
+.wrapper-selectDate input {
+    margin-right: 1%;
+    display: inline-block;
+}
+
+.wrapper-selectDate p {
+    font-weight: 600;
+    margin-top: 0.5rem;
+    font-size: 15px;
+    color: #156CC0;
+
+}
+
+.nameClick {
+    color: #156CC0;
+    text-decoration: underline;
+}
+
+.nameClick:active {
+    color: #156CC0;
+}
+
+.displayName {
+    font-family: 'Hedvig Letters Serif', serif;
+    font-size: 25px;
+    font-weight: 600;
+}
