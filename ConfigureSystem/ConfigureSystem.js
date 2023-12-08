@@ -2,7 +2,6 @@ var newFileTypes = new Set();
 var newRefillDates = new Set();
 
 $(document).ready(function() {
-    console.log("..........")
     getConfiguration();
     getRefillDates();
     getAcceptedFileTypes();

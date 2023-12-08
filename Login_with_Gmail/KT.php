@@ -62,7 +62,7 @@ if (isset($_GET['code'])) {
                 $result = $stmt->get_result();
                 $value = $result->fetch_object();
                 $Role = $value->role;
-                var_dump($Role);
+                
                 
                 $get = mysqli_query($conn, "select id,role from users where email = '$user->email' ");
                 $getData = $get->fetch_all(MYSQLI_ASSOC);
@@ -70,9 +70,9 @@ if (isset($_GET['code'])) {
 
                 $_SESSION['student'] = $ID;
                 $_SESSION['name'] = $user->name;
-
+                $_SESSION['role'] = $Role;
                 if ($Role == "Student") {
-                    header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_User.php');
+                    header('Location: ../Login_with_Gmail/homeAfterLogin_User.php');
                 } else {
                     header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_Manage.php');
                 }
@@ -114,5 +114,7 @@ if (isset($_GET['code'])) {
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
     localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+
 </script>

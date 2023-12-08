@@ -6,7 +6,7 @@
     function clientGoogle(){
         $client_id = "265101506403-ecunt1amgham7ssvao450153020uq5af.apps.googleusercontent.com"; 
         $client_secret = "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"; 
-        $redirect_uri = "http://localhost/printing_system/Login_with_Gmail/KT.php"; 
+        $redirect_uri = "http://localhost/printing_system/Login_with_Gmail/KT.php";
         $client = new Google_Client();
         $client->setClientId($client_id);
         $client->setClientSecret($client_secret);

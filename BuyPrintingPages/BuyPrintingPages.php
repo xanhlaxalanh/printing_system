@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="BuyPrintingPages.css" >
 
     <!-- js file link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="BuyPrintingPages.js"></script>
 
 </head>
@@ -20,23 +29,26 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="../images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
-                <div class="second-option"><a href="../StudentServices/StudentServices.php" >dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
-        
+
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a href="../Login_with_Gmail/infoUser.php">
+                    <?php echo $Username; ?>
+                </a></div>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="login">Đăng xuất</a>
+                <a href="login.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -56,8 +68,7 @@
                 // Get Balance
                 $sql = "SELECT Balance 
                     FROM Users
-                    WHERE ID = 1
-                    ";
+                    WHERE ID =". $ID;
                 $result = $conn->query($sql);
             
                 if ($result->num_rows > 0) {
@@ -129,7 +140,7 @@
 
                     $sql = "SELECT Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID
                             FROM BPP_Order
-                            WHERE Owner_ID = 1
+                            WHERE Owner_ID = ". $ID ."
                             ORDER BY Order_Creation_Date DESC
                             ";
                     $result = $conn->query($sql);

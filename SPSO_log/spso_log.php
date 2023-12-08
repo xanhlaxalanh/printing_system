@@ -1,6 +1,8 @@
 <?php
 @include '../ConnectDB.php';
 session_start();
+$ID = $_SESSION['id'];
+$Username = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +45,7 @@ session_start();
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a><?php echo $Username; ?></a></div>
             <div class="seperator">|</div>
             <div>
                 <a href="login.php" class="login">Đăng xuất</a>

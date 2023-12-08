@@ -27,16 +27,16 @@
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="infoManage.php">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="homeAfterLogin_Manage.php" >dịch vụ của tôi</a></div>
             </div>
         </div>
         
         <div class="right-side">
-            <div class="first-option"><a href="infoManage.php">
+            <div class="username"><a href="infoManage.php">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                        echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
+                        echo htmlspecialchars($_SESSION['user_info']['name']);
                     }
                 ?>
                 </a>
@@ -61,8 +61,8 @@
         <div class="service-list">
             <div><a href="">thêm máy in</a></div>
             <div><a href="">quản lý các máy in</a></div>
-            <div><a href="">cấu hình hệ thống</a></div>
-            <div><a href="">nhật kí sử dụng dịch vụ in của sinh viên</a></div>
+            <div><a href="../ConfigureSystem/ConfigureSystem.html">cấu hình hệ thống</a></div>
+            <div><a href="../SPSO_log/BeforeLoad.php">nhật kí sử dụng dịch vụ in của sinh viên</a></div>
             <div class="last-service"><a href="">các báo cáo về việc sử dụng hệ thống in</a></div>
         </div>
     </div>
@@ -118,5 +118,6 @@
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo "\"".  $_SESSION['role'] ."\"" ?>);
     localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
 </script>

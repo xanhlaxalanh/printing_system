@@ -1,6 +1,9 @@
 <?php
 @include '../ConnectDB.php';
-
+session_start();
+$ID = $_SESSION['id'];
+$Username = $_SESSION['username'];
+$Role = $_SESSION['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +25,15 @@
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../ActivityLog/actstyle.css">
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+        var role = "<?php echo $Role; ?>";
+        window.onload = function () {
+            if (role != "SPSO") {
+                window.location.href = "../Login_with_Gmail/home.php";
+            }
+        }
+    </script>
+
 </head>
 
 <body>
@@ -30,23 +42,28 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="../images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="">dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username">
+                <a href="../Login_with_Gmail/infoManage.php">
+                    <?php echo $Username; ?>
+                </a>
+            </div>
             <div class="seperator">|</div>
             <div>
-                <a href="login.php" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -75,25 +92,25 @@
                     <?php
                     $result = mysqli_query($conn, "select * from users ORDER BY Fname;");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
-                    foreach($data as $row) {
+                    foreach ($data as $row) {
                         echo '
                         <tr>
                             <td>
                             
-                                '.$row["Lname"].' 
+                                ' . $row["Lname"] . ' 
                             </td>
                             <td>
-                            <a class="nameClick" href="../SPSO_log/spso_log.php?id='.$row["ID"].'&nameStudent='.$row["Lname"] . " " . $row['Fname'].' ">
-                                '.$row['Fname'].'</a>
+                            <a class="nameClick" href="../SPSO_log/spso_log.php?id=' . $row["ID"] . '&nameStudent=' . $row["Lname"] . " " . $row['Fname'] . ' ">
+                                ' . $row['Fname'] . '</a>
                             </td>
                             <td>
-                                '.$row['Email'].'
+                                ' . $row['Email'] . '
                             </td>
                             <td>
-                                '.$row['Date_Of_Birth'].'
+                                ' . $row['Date_Of_Birth'] . '
                             </td>
                             <td>
-                                '.$row['Balance'].'
+                                ' . $row['Balance'] . '
                             </td>
                         </tr> 
                  ';

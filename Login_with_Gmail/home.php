@@ -54,7 +54,7 @@ $url = $client->createAuthUrl();
         <section class="header">
         <div class="left-side">
                 <div class="logo">
-                    <a href="#">
+                    <a href="">
                         <img src="images/logo.png" alt="logo" />
                         <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                     </a>
@@ -140,3 +140,9 @@ $url = $client->createAuthUrl();
     </body>
 
     </html>
+
+    <script>
+        localStorage.removeItem("ID");
+        localStorage.removeItem("Username");
+        localStorage.removeItem("Role");
+    </script>
