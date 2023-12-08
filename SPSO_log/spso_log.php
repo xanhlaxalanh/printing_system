@@ -45,7 +45,7 @@ $Username = $_SESSION['username'];
         </div>
 
         <div class="right-side">
-            <div class="username"><?php echo $Username; ?></div>
+            <div class="username"><a><?php echo $Username; ?></a></div>
             <div class="seperator">|</div>
             <div>
                 <a href="login.php" class="login">Đăng xuất</a>
