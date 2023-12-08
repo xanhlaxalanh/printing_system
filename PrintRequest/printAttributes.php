@@ -193,7 +193,7 @@
         function executeQuery(event) {
             var uploadedFileName = localStorage.getItem('uploadedFileName');
             var userId = Math.floor(Math.random() * 10000000000000).toString().substring(0, 13); //dummy data
-            var fileId = btoa(uploadedFileName.substring(0, 10));
+            var fileId = parseInt(btoa(uploadedFileName.substring(0, 10)), 36) % 10000000000;
 
             var duplexOption = $('.duplex-yes').hasClass('button-selected') ? 'Yes' : 'No';
             if (duplexOption === 'Yes') {

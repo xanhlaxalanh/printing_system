@@ -18,7 +18,7 @@ if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
 if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     $Username = $_SESSION['username'];
 } else {
-    $Username = 'Bùi Quang Hưng11';
+    $Username = 'Test';
 }
 ?>
 
