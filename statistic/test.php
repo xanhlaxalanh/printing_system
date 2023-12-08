@@ -1,5 +1,7 @@
 <?php
+
 @include '../ConnectDB.php';
+
 $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
 FROM print_request
 where File_ID in (select id from file where file.User_ID = '1')
@@ -61,7 +63,14 @@ while ($row = mysqli_fetch_assoc($sql)) {
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="first-option"><a href="infoManage.php">
+                <?php
+                    if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
+                        echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
+                    }
+                ?>
+                </a>
+            </div>
             <div class="seperator">|</div>
             <div>
                 <a href="#" class="login">Đăng xuất</a>
@@ -119,3 +128,10 @@ while ($row = mysqli_fetch_assoc($sql)) {
 </body>
 
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
+    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+
+</script>

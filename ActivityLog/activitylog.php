@@ -33,7 +33,7 @@ $Role = $_SESSION['role'];
         <?php var_dump($Role); ?>
         window.onload = function () {
             if (role != "Student") {
-                window.location.href = "../Login_with_Gmail/home.php";
+                //window.location.href = "../Login_with_Gmail/home.php";
             }
         }
     </script>
@@ -172,7 +172,6 @@ $Role = $_SESSION['role'];
                 </table>
         <div class="button-group">
             <button onclick="ClosePopup(\'sendprint_popup\', \'activitylog.php\')" class="button" type="button">Thoát</button>
-            <a href="#" type="button" class="button">Chỉnh sửa</a>
             <a class="button" href="send_activitylog.php?send_confirm_id=' . $send_id . '" type="button">Xác nhận</a>
         </div>
         </div>
@@ -299,7 +298,7 @@ $Role = $_SESSION['role'];
         <h1>NHẬT KÝ SỬ DỤNG DỊCH VỤ IN</h1>
         <section>
             <input type="text" id="searchInput" onkeyup="search(2,'user_table')" placeholder="Search for file name..">
-            <table border="1" id="user_table">
+            <table border="1" id="user_table" style="overflow-y:scroll;height:400px;display:block;">
                 <colgroup>
                     <col span="3" style="width: 280px">
                     <col span="6" style="width: 120px;">
@@ -361,11 +360,11 @@ echo "<p style='border:None; color:var(--text-color); font-weight:500; font-size
                             <td>
                                 <?php
                                 if ($row['state_requestprint'] == '0')
-                                    $state = '<a  class="payment_link_text">Đã lưu</a>';
+                                    $state = '<a href="activitylog.php?send_id=' . $row['requestid'] . '" class="payment_link_text">Đã lưu</a>';
                                 else if ($row['state_requestprint'] == '2')
                                     $state = 'Đã hoàn thành';
                                 else if ($row['state_requestprint'] == '1')
-                                    $state = 'Đã gửi in';
+                                    $state = '<p style="color:blue;">Đã gửi in<p>';
                                 else
                                     $state = 'Lỗi';
                                 ?>

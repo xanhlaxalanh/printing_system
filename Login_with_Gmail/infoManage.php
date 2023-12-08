@@ -1,5 +1,7 @@
 <?php
     session_start();
+
+    @include 'database.php';
 ?>
 
 <!DOCTYPE html>
@@ -40,9 +42,11 @@
                     }
                 ?>
             </div>
+
             <div class="seperator">|</div>
+
             <div>
-                <a href="home.php" class="login">Đăng xuất</a>
+                <a href="home.php" class="loglogout">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -74,15 +78,6 @@
             </h2></div>
 
             <div><h2>
-                MSSV:
-                <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['id'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['id']) . '</span>';
-                }
-                ?>
-            </h2></div>
-
-            <div><h2>
                 Email:
                 <?php
                 if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['email'])) {
@@ -94,29 +89,29 @@
             <div><h2>
                 Năm sinh:
                 <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['birthday'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['birthday']) . '</span>';
-                }
+                $email = $_SESSION['user_info']['email'];
+                $get = mysqli_query($conn, "select Date_Of_Birth from users where email = '$email' ");
+                $getData = $get->fetch_all(MYSQLI_ASSOC);
+                $Date_Of_Birth = $getData[0]['Date_Of_Birth'];
+                echo '<span class="user-name">' . htmlspecialchars($Date_Of_Birth) . '</span>';
                 ?>
             </h2></div>
 
             <div><h2>
                 Giới tính:
                 <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['gender'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['gender']) . '</span>';
+                $email = $_SESSION['user_info']['email'];
+                $get = mysqli_query($conn, "select Sex from users where email = '$email' ");
+                $getData = $get->fetch_all(MYSQLI_ASSOC);
+                $Sex = $getData[0]['Sex'];
+                if($Sex == 0){
+                    echo '<span class="user-name">' . "Nam" . '</span>';
+                }else if($Sex == 1){
+                    echo '<span class="user-name">' . "Nữ" . '</span>';
                 }
                 ?>
             </h2></div>
 
-            <div><h2>
-                Số điện thoại:
-                <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['phone'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['phone']) . '</span>';
-                }
-                ?>
-            </h2></div>
         </div>
 
     </div>
@@ -170,3 +165,10 @@
     <!-- custom js file link -->
 </body>
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
+    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+
+</script>
