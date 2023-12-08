@@ -285,6 +285,12 @@
                         success: function (response) {
                             // Handle the response from the server
                             console.log(response);
+                            // if (response.success) {
+                                // Display a window alert
+                                window.alert("Print request sent successfully");
+                                // Close the printAttributes.php window
+                                // window.close();
+                            // }
                         },
                         error: function (xhr, status, error) {
                             // Handle any errors

@@ -119,6 +119,7 @@ function executeQuery() {
             if (xhr.status === 200) {
                 console.log('Response:', xhr.responseText);
                 // Handle successful response
+                window.alert("Update printer state successfully");
             } else {
                 console.error('Error:', xhr.status);
                 // Handle error response

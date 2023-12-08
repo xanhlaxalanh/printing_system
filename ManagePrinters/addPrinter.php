@@ -1,13 +1,6 @@
 <?php
 
 @include 'database.php';
-// prevent campus not chosen brick the html
-if (isset($_POST['campus'])) {
-    $selectedCampus = $_POST['campus'];
-} else {
-    $selectedCampus = null;
-}
-
 session_start();
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $userId = $_SESSION['id'];
@@ -19,6 +12,12 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     $Username = $_SESSION['username'];
 } else {
     $Username = 'Test';
+}
+// prevent campus not chosen brick the html
+if (isset($_POST['campus'])) {
+    $selectedCampus = $_POST['campus'];
+} else {
+    $selectedCampus = null;
 }
 
 ?>
@@ -32,7 +31,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 
     <link rel="stylesheet" href="./globalManagePrinter.css" />
     <link rel="stylesheet" href="./addPrinter.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
 
     <!-- swiper css link -->
@@ -48,7 +47,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
     <!-- header section starts -->
 
     <section class="header">
-    <div class="left-side">
+        <div class="left-side">
             <div class="logo">
                 <a href="#">
                     <img src="/images/logo.png" alt="logo" />
@@ -58,15 +57,17 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
             <div class="menu-bar">
                 <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
                 <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
-        </div>
-
-        <div class="right-side">
-            <div class="username">Username</div>
-            <div class="seperator">|</div>
-            <div>
-                <a href="#" class="login">Đăng xuất</a>
             </div>
-        </div>
+
+            <div class="right-side">
+                <div class="username"><a>
+                        <?php echo $Username; ?>
+                    </a></div>
+                <div class="seperator">|</div>
+                <div>
+                    <a href="#" class="login">Đăng xuất</a>
+                </div>
+            </div>
     </section>
 
     <!-- header section ends -->
@@ -134,7 +135,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                         <span id="idExistsText" class="id-check-text"></span>
                     </div>
                     <div class="menu">
-                        <b class="input-text">Name</b>
+                        <b class="input-text">Tên</b>
                         <div class="input">
                             <input type="text" name="printerName" required>
                         </div>
@@ -143,6 +144,12 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
                         <b class="input-text">Description</b>
                         <div class="input">
                             <input type="text" name="printerDesc" required>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <b class="input-text">Phòng</b>
+                        <div class="input">
+                            <input type="text" name="printerRoom" required>
                         </div>
                     </div>
                     <button type="submit" class="confirm-button">

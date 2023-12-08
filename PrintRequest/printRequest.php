@@ -12,9 +12,9 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 } else {
     $Username = 'Test';
 }
-    // $ID = $_SESSION['id'];
-    
-    // $Role = $_SESSION['role'];
+// $ID = $_SESSION['id'];
+
+// $Role = $_SESSION['role'];
 
 $maxfilesize = 50 * 1024; //50MB
 $allowUpload = true;
@@ -139,7 +139,7 @@ if (isset($_POST['campus'])) {
 
     <link rel="stylesheet" href="./globalPrintRequest.css" />
     <link rel="stylesheet" href="./printRequest.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
 
     <!-- swiper css link -->
@@ -173,7 +173,9 @@ if (isset($_POST['campus'])) {
         </div>
 
         <div class="right-side">
-            <div class="username"><a><?php echo $Username; ?></a></div>
+            <div class="username"><a>
+                    <?php echo $Username; ?>
+                </a></div>
             <div class="seperator">|</div>
             <div>
                 <a href="#" class="login">Đăng xuất</a>
@@ -308,7 +310,7 @@ if (isset($_POST['campus'])) {
         function openFileInput() {
             document.getElementById("fileInput").click();
         }
-        
+
         document.getElementById("fileInput").addEventListener("change", function () {
             var fileInput = this;
             if (fileInput.files.length > 0) {
@@ -333,7 +335,7 @@ if (isset($_POST['campus'])) {
                             fileId: fileId,
                             uploadedFileName: uploadedFileName,
                             userId: userId,
-                            fileType:fileType
+                            fileType: fileType
                         },
                         success: function (response) {
                             // Handle the response from the server

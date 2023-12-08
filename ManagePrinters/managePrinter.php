@@ -31,7 +31,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 
     <link rel="stylesheet" href="./globalManagePrinter.css" />
     <link rel="stylesheet" href="./managePrinter.css" />
-    <link rel="stylesheet" type="text/css" href="../style.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
 
     <!-- swiper css link -->
@@ -61,7 +61,9 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a>
+                    <?php echo $Username; ?>
+                </a></div>
             <div class="seperator">|</div>
             <div>
                 <a href="#" class="login">Đăng xuất</a>
