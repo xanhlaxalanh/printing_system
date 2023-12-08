@@ -1,11 +1,21 @@
 <?php
-session_start();
-if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
-    $userId = $_SESSION['student_id'];
-} else {
-    $userId = 1234567;
-}
 @include 'database.php';
+session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $userId = $_SESSION['id'];
+} else {
+    $userId = 123;
+}
+
+if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+    $Username = $_SESSION['username'];
+} else {
+    $Username = 'Bùi Quang Hưng11';
+}
+    // $ID = $_SESSION['id'];
+    
+    // $Role = $_SESSION['role'];
+
 $maxfilesize = 50 * 1024; //50MB
 $allowUpload = true;
 function convert_upload_file_array($upload_files)
@@ -157,13 +167,13 @@ if (isset($_POST['campus'])) {
                 </a>
             </div>
             <div class="menu-bar">
-                <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
+                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
                 <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a><?php echo $Username; ?></a></div>
             <div class="seperator">|</div>
             <div>
                 <a href="#" class="login">Đăng xuất</a>
@@ -298,6 +308,7 @@ if (isset($_POST['campus'])) {
         function openFileInput() {
             document.getElementById("fileInput").click();
         }
+        
         document.getElementById("fileInput").addEventListener("change", function () {
             var fileInput = this;
             if (fileInput.files.length > 0) {
@@ -313,7 +324,7 @@ if (isset($_POST['campus'])) {
                     var fileName = file.name;
                     document.getElementById("uploadedFileName").textContent = fileName;
                     var uploadedFileName = fileName;
-                    var userId = var userId = <?php echo json_encode($userId); ?>;
+                    var userId = 'test';
                     var fileId = btoa(uploadedFileName.substring(0, 10));
                     $.ajax({
                         url: 'sendFile.php',

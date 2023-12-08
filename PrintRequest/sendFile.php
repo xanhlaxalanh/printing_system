@@ -2,10 +2,10 @@
 session_start();
 // Retrieve the file details from the AJAX request
 // $fileId = $_POST['fileId'] ?? '';
-if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
-    $userId = $_SESSION['student_id'];
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $userId = $_SESSION['id'];
 } else {
-    $userId = 1234567;
+    $userId = 123;
 }
 $fileId = $_POST['fileId'] ?? substr(crc32(uniqid()), 0, 10);
 $fileName = $_POST['uploadedFileName'] ?? '';
@@ -15,7 +15,6 @@ if (isset($_POST['fileType'])) {
 
 } else {
     $fileType = '.pdf';
-
 }
 
 // WIP, dummy data

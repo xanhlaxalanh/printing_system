@@ -8,6 +8,19 @@ if (isset($_POST['campus'])) {
     $selectedCampus = null;
 }
 
+session_start();
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    $userId = $_SESSION['id'];
+} else {
+    $userId = 123;
+}
+
+if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+    $Username = $_SESSION['username'];
+} else {
+    $Username = 'Bùi Quang Hưng11';
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,7 +56,7 @@ if (isset($_POST['campus'])) {
                 </a>
             </div>
             <div class="menu-bar">
-                <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
+                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
                 <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
         </div>
 
