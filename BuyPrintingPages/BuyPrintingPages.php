@@ -3,6 +3,7 @@
 
     $ID = $_SESSION['id'];
     $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
 ?>
 
 <!DOCTYPE html>
@@ -28,14 +29,14 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="../UserHome/UserHome.php">
+                <a href="../UserHome/BeforeLoad.php">
                     <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
                 <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">dịch vụ của tôi</a>
                 </div>
             </div>

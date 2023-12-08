@@ -20,23 +20,23 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
+                <a href="../UserHome/BeforeLoad.php">
                     <img src="../images/logo.png" alt="logo" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="infoUser.php">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="homeAfterLogin_User.php" >dịch vụ của tôi</a></div>
             </div>
         </div>
         
         <div class="right-side">
-            <div class="first-option"><a href="infoManage.php">
+            <div class="username"><a href="infoManage.php">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                        echo '<span class="username">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
+                        echo htmlspecialchars($_SESSION['user_info']['name']);
                     }
                 ?>
                 </a>

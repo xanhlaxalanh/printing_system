@@ -27,8 +27,8 @@
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="homeAfterLogin_Manage.php">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="./homeAfterLogin_Manage.php" >dịch vụ của tôi</a></div>
             </div>
         </div>
         
@@ -168,6 +168,5 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script src="script.js"></script>
 </body>
 </html>
