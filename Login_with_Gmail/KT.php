@@ -65,9 +65,9 @@ if (isset($_GET['code'])) {
                 var_dump($Role);
                 $_SESSION['student_id'] = $ID;
                 if ($Role == "Student") {
-                    header('Location: homeAfterLogin_User.php');
+                    header('Location: ../Login_with_Gmail/homeAfterLogin_User.php');
                 } else {
-                    header('Location: homeAfterLogin_Manage.php');
+                    header('Location: ../Login_with_Gmail/homeAfterLogin_Manage.php');
                 }
             } else {
                 $_SESSION['Fail_Login'] = True;
