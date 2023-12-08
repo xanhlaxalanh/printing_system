@@ -1,11 +1,23 @@
 <?php
     session_start();
 
-    require 'database.php';
+    @include 'database.php';
+
+    $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
+    FROM print_request
+    where File_ID in (select id from file where file.User_ID = '1')
+    GROUP BY MONTHNAME(Creation_Date)");
+    $dataPoints = array();
+
+    while ($row = mysqli_fetch_assoc($sql)) {
+        array_push($dataPoints, array("y" => $row['sum'], "label" => $row['Date_']));
+    }
 ?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,28 +25,44 @@
     <title>Dịch vụ sinh viên</title>
 
     <!-- custom css file link -->
-    <link rel="stylesheet" type="text/css" href="style.css" >
-    <link rel="stylesheet" type="text/css" href="modal.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+        window.onload = function () {
 
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Thống kê số page Sinh viên Dương đã in"
+                },
+                axisY: {
+                    title: "Tổng số page"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                }]
+            });
+            chart.render();
+
+        }
+    </script>
 </head>
-<body>
-    <!-- header section starts -->
 
+<body>
     <section class="header">
         <div class="left-side">
             <div class="logo">
                 <a href="#">
-                    <img src="images/logo.png" alt="logo" />
+                    <img src="../images/logo.png" alt="logo" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
                 <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                <div class="second-option"><a href="">dịch vụ của tôi</a></div>
             </div>
         </div>
-        
+
         <div class="right-side">
             <div class="first-option"><a href="infoManage.php">
                 <?php
@@ -46,54 +74,16 @@
             </div>
             <div class="seperator">|</div>
             <div>
-                <a href="home.php" class="logout">Đăng xuất</a>
+                <a href="#" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
-
-    <!-- header section ends -->
-
-
-
-
-    <!-- body section starts -->
-
     <div class="body">
-        <h1 class="title">BÁO CÁO SỬ DỤNG HỆ THỐNG IN</h1>
 
-        <div class="service-list">
-            <h2>Thống kê số tờ giấy sinh viên dùng cho mỗi lần in trong khoảng thời gian được chia thành 3 hoặc 4 nhóm. Trung bình số tờ giấy sử dụng cho mỗi lần in. Số lượng giấy đã dùng của mỗi loại.</h2>
-            
-            <h2>
-            <form method="POST" action="check.php">
-                <div class="form-group">
-                    <label for="sonhom">Số nhóm: </label>
-                    <input name="sonhom" class="form-control"  placeholder="Chỉ 3 hoặc 4">
-                </div>
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
 
-                <div class="form-group">
-                    <label for="batdau">Ngày bắt đầu: </label>
-                    <input name="batdau" class="form-control"  placeholder="YYYY-MM-DD: 2023-12-01">
-                </div>
-
-                <div class="form-group">
-                    <label for="ketthuc">Ngày kết thúc: </label>
-                    <input name="ketthuc" class="form-control"  placeholder="YYYY-MM-DD: 2023-12-30">
-                </div>
-
-                <button type="submit" class="btn btn-primary" name="Save">Phân tích</button>
-            </form>
-            </h2>
-
-        </div>
     </div>
 
-    <!-- body section ends -->
-
-
-
-
-    <!-- footer section starts -->
     <div class="footer-container">
         <section class="footer">
             <div class="box-container">
@@ -111,9 +101,16 @@
 
                 <div class="box">
                     <h3>liên hệ</h3>
-                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
-                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
-                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                    <a href="#">
+                        <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh
+                        City, Vietnam
+                    </a>
+                    <a href="#">
+                        <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234)
+                    </a>
+                    <a href="mailto:elearning@hcmut.edu.vn" class="email">
+                        <div class="email-icon"></div>elearning@hcmut.edu.vn
+                    </a>
                 </div>
             </div>
         </section>
@@ -123,44 +120,19 @@
     </div>
     <!-- footer section ends -->
 
-    <!-- Modal -->
-    <div id="analysisModal" class="modal-overlay" style="display:none;">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h2>Kết quả phân tích</h2>
-        </div>
-        <div class="modal-body">
-        <h3>Nhóm 1: </h3>
-        <h3>Nhóm 2: </h3>
-        <h3>Nhóm 3: </h3>
-
-        <h3>Nhóm A0: </h3>
-        <h3>Nhóm A1: </h3>
-        <h3>Nhóm A2: </h3>
-        <h3>Nhóm A3: </h3>
-        <h3>Nhóm A4: </h3>
-
-        <h3>Trung bình: </h3>
-
-        <!-- The results can be dynamically injected into this div -->
-        <div id="resultContent"></div>
-        </div>
-        <div class="modal-footer">
-        </div>
-    </div>
-    </div>
 
 
 
 
 
-
-
-    <!-- swiper js link -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-
-    <!-- custom js file link -->
-    <script src="script.js"></script>
-    <script src="modal.js"></script>
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
 </body>
+
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
+    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+
+</script>

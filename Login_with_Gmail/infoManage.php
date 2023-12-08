@@ -104,12 +104,10 @@
                 $get = mysqli_query($conn, "select Sex from users where email = '$email' ");
                 $getData = $get->fetch_all(MYSQLI_ASSOC);
                 $Sex = $getData[0]['Sex'];
-                if($Sex = 0){
-                    $x = "Nữ";
-                    echo '<span class="user-name">' . htmlspecialchars($x) . '</span>';
-                }else if($Sex = 1){
-                    $x = "Nam";
-                    echo '<span class="user-name">' . htmlspecialchars($x) . '</span>';
+                if($Sex == 0){
+                    echo '<span class="user-name">' . "Nam" . '</span>';
+                }else if($Sex == 1){
+                    echo '<span class="user-name">' . "Nữ" . '</span>';
                 }
                 ?>
             </h2></div>

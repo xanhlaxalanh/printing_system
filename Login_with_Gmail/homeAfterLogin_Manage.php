@@ -63,7 +63,7 @@
             <div><a href="">quản lý các máy in</a></div>
             <div><a href="../ConfigureSystem/ConfigureSystem.html">cấu hình hệ thống</a></div>
             <div><a href="../SPSO_log/BeforeLoad.php">nhật kí sử dụng dịch vụ in của sinh viên</a></div>
-            <div class="last-service"><a href="">các báo cáo về việc sử dụng hệ thống in</a></div>
+            <div class="last-service"><a href="statisUser.php">các báo cáo về việc sử dụng hệ thống in</a></div>
         </div>
     </div>
 
