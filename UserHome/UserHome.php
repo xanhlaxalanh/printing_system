@@ -1,10 +1,10 @@
 <?php
-@include '../ConnectDB.php';
-session_start();
+    @include '../ConnectDB.php';
+    session_start();
 
-$ID = $_SESSION['id'];
-$Username = $_SESSION['username'];
-$Role = $_SESSION['role'];
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,14 +27,14 @@ $Role = $_SESSION['role'];
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
+                <a href="../UserHome/BeforeLoad.php">
                     <img src="../images/logo.png" alt="logo" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">trang chủ</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
                 <div class="second-option"><a id="tagA" href="">dịch vụ của tôi</a></div>
                     <script>
                         var getEleA = document.getElementById('tagA');
@@ -52,11 +52,21 @@ $Role = $_SESSION['role'];
 
             <div class="right-side">
                 <div class="username">
-                    <a><?php echo $Username; ?></a>
+                    <a id="info" href=""><?php echo $Username; ?></a>
+                    <script>
+                        var info = document.getElementById('info');
+                        var role = "<?php echo $Role; ?>";
+                        if (role == "Student") {
+                            info.href = "../Login_with_Gmail/infoUser.php";
+                        }
+                        else{
+                            info.href = "../Login_with_Gmail/infoManage.php";
+                        }
+                    </script>
                 </div>
                 <div class="seperator">|</div>
                 <div>
-                    <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
+                    <a href="../Login_with_Gmail/home.php" class="logout">Đăng xuất</a>
                 </div>
             </div>
     </section>
@@ -128,7 +138,6 @@ $Role = $_SESSION['role'];
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script src="script.js"></script>
 </body>
 
 </html>

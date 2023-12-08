@@ -73,17 +73,17 @@ section {
     width: 55px;
 }
 
-.header .right-side .login {
+.header .right-side .login, .logout {
     font-size: 16px;
     color: #106BBF;
 }
 
-.header .right-side .login:hover {
+.header .right-side .login:hover, .logout:hover {
     color: #095195;
     text-decoration: underline;
 }
 
-.header .right-side{
+.header .right-side {
     display: flex;
     flex-flow: wrap;
     align-items: center;
@@ -91,7 +91,7 @@ section {
     justify-content: space-around;
 }
 
-.header .right-side .username,
+.header .right-side .username a,
 .header .right-side .seperator {
     font-size: 16px;
     color: #676c70;

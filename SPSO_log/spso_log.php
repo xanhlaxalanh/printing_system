@@ -55,11 +55,15 @@ $Role = $_SESSION['role'];
         </div>
 
         <div class="right-side">
+<<<<<<< HEAD
             <div class="username">
                 <a href="../Login_with_Gmail/infoManage.php">
                     <?php echo $Username; ?>
                 </a>
             </div>
+=======
+            <div class="username"><a><?php echo $Username; ?></a></div>
+>>>>>>> 4cbef4a4c0f3a7132a51dec046c9e34a69b21344
             <div class="seperator">|</div>
             <div>
                 <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
@@ -176,7 +180,7 @@ $Role = $_SESSION['role'];
                             if ($row['state_requestprint'] == '0')
                                 $state = '<a  class="payment_link_text">Đã lưu</a>';
                             else if ($row['state_requestprint'] == '2')
-                                $state = '<p style="color:blue;">Đã hoàn thành</p>';
+                                $state = 'Đã hoàn thành';
                             else
                                 $state = 'Đã gửi in';
                             echo $state;
