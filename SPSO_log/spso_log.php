@@ -161,7 +161,7 @@ $Role = $_SESSION['role'];
                     }
 
                     $data = $result->fetch_all(MYSQLI_ASSOC);
-                    if (empty($data)) {
+                    if (empty($data) && !isset($_POST['startday']) && !isset($_POST['endday'])) {
                         echo "<p style='border:None; color:var(--text-color); font-weight:500; font-size:17px;'>Nhật ký của sinh viên này hiện đang trống!</p>";
                     } else
                         foreach ($data as $row) {

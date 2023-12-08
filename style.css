@@ -39,9 +39,13 @@ section {
     padding: 5rem 10%;
 }
 
+
+
 .header {
     position: sticky;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     background-color: var(--white);
     display: flex;
@@ -73,12 +77,14 @@ section {
     width: 55px;
 }
 
-.header .right-side .login, .logout {
+.header .right-side .login,
+.logout {
     font-size: 16px;
     color: #106BBF;
 }
 
-.header .right-side .login:hover, .logout:hover {
+.header .right-side .login:hover,
+.logout:hover {
     color: #095195;
     text-decoration: underline;
 }
@@ -98,7 +104,9 @@ section {
     font-weight: 600;
     text-transform: capitalize;
 }
-
+.header .right-side .username a:active{
+    color: #676c70;
+}
 .header .right-side .seperator {
     padding: 5px;
 }
@@ -116,7 +124,7 @@ section {
     padding: 30px 10px;
 }
 
-.header .left-side .menu-bar div a{
+.header .left-side .menu-bar div a {
     font-size: 16px;
     font-weight: 700;
     color: var(--fontColor);
