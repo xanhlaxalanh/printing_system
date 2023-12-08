@@ -116,5 +116,4 @@ if (isset($_GET['code'])) {
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
     localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
     localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
-
 </script>

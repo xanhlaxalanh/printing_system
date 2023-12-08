@@ -5,7 +5,8 @@
 $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
 FROM print_request
 where File_ID in (select id from file where file.User_ID = '1')
-GROUP BY MONTHNAME(Creation_Date)");
+GROUP BY MONTHNAME(Creation_Date)
+ORDER BY MONTHNAME(Creation_Date)");
 $dataPoints = array();
 
 while ($row = mysqli_fetch_assoc($sql)) {
