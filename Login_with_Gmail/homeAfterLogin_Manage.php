@@ -59,8 +59,8 @@
         <h1 class="title">dịch vụ của tôi</h1>
 
         <div class="service-list">
-            <div><a href="">thêm máy in</a></div>
-            <div><a href="">quản lý các máy in</a></div>
+            <div><a href="../ManagePrinter/addPrinter.php">thêm máy in</a></div>
+            <div><a href="../ManagePrinter/managePrinter.php">quản lý các máy in</a></div>
             <div><a href="../ConfigureSystem/ConfigureSystem.html">cấu hình hệ thống</a></div>
             <div><a href="../SPSO_log/BeforeLoad.php">nhật kí sử dụng dịch vụ in của sinh viên</a></div>
             <div class="last-service"><a href="">các báo cáo về việc sử dụng hệ thống in</a></div>

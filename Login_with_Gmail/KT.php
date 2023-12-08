@@ -73,8 +73,8 @@ if (isset($_GET['code'])) {
                 $_SESSION['role'] = $Role;
                 if ($Role == "Student") {
                     header('Location: ../Login_with_Gmail/homeAfterLogin_User.php');
-                } else {
-                    header('Location: http://localhost/printing_system/Login_with_Gmail/homeAfterLogin_Manage.php');
+                } else if ($Role == "SPSO") {
+                    header('Location: ../Login_with_Gmail/homeAfterLogin_Manage.php');
                 }
             } else {
                 $_SESSION['Fail_Login'] = True;
