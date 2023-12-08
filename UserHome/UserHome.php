@@ -1,5 +1,14 @@
+<?php
+@include '../ConnectDB.php';
+session_start();
+
+$ID = $_SESSION['id'];
+$Username = $_SESSION['username'];
+$Role = $_SESSION['role'];
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +16,11 @@
     <title>Trang chủ</title>
 
     <!-- custom css file link -->
-    <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="UserHome.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="UserHome.css">
 
 </head>
+
 <body>
     <!-- header section starts -->
 
@@ -23,21 +33,37 @@
                 </a>
             </div>
 
-            <!-- <div class="menu-bar">
-                <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
-            </div> -->
-        </div>
-        
-        <div class="right-side">
-            <a href="login.php" class="login">Đăng nhập</a>
-        </div>
-    </section>
+            <div class="menu-bar">
+                <div class="first-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">trang chủ</a></div>
+                <div class="second-option"><a id="tagA" href="">dịch vụ của tôi</a></div>
+                    <script>
+                        var getEleA = document.getElementById('tagA');
+                        var role = "<?php echo $Role; ?>";
+                        if (role == "Student") {
+                            getEleA.href = "../Login_with_Gmail/homeAfterLogin_User.php";
+                        }
+                        else{
+                            getEleA.href = "../Login_with_Gmail/homeAfterLogin_Manage.php";
+                        }
 
+                    </script>
+                
+            </div>
+
+            <div class="right-side">
+                <div class="username">
+                    <a><?php echo $Username; ?></a>
+                </div>
+                <div class="seperator">|</div>
+                <div>
+                    <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
+                </div>
+            </div>
+    </section>
     <!-- header section ends -->
 
     <div class="main">
-        <img src="../images/slbktv.jpg" alt="backkhoa"/>
+        <img src="../images/slbktv.jpg" alt="backkhoa" />
         <div class="home-title">
             <p class="school-name">TRƯỜNG ĐẠI HỌC BÁCH KHOA - ĐHQG TP.HCM</p>
             <p class="service-name">STUDENT SMART PRINTING SERVICE</p>
@@ -70,9 +96,16 @@
 
                 <div class="box">
                     <h3>liên hệ</h3>
-                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
-                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
-                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                    <a href="#">
+                        <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh
+                        City, Vietnam
+                    </a>
+                    <a href="#">
+                        <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234)
+                    </a>
+                    <a href="mailto:elearning@hcmut.edu.vn" class="email">
+                        <div class="email-icon"></div>elearning@hcmut.edu.vn
+                    </a>
                 </div>
             </div>
         </section>
@@ -83,7 +116,7 @@
     <!-- footer section ends -->
 
 
-    
+
 
 
 
@@ -97,4 +130,5 @@
     <!-- custom js file link -->
     <script src="script.js"></script>
 </body>
+
 </html>

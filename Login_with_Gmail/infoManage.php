@@ -11,7 +11,7 @@
     <title>Dịch vụ sinh viên</title>
 
     <!-- custom css file link -->
-    <link rel="stylesheet" type="text/css" href="style.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css" >
 
 </head>
 <body>
@@ -33,16 +33,16 @@
         </div>
         
         <div class="right-side">
-            <div>
+            <div class="username">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                        echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
+                        echo '<a style="pointer-events:none;">' . htmlspecialchars($_SESSION['user_info']['name']) . '</a>';
                     }
                 ?>
             </div>
             <div class="seperator">|</div>
             <div>
-                <a href="home.php" class="logout">Đăng xuất</a>
+                <a href="home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>

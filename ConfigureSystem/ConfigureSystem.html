@@ -13,6 +13,7 @@
     <!-- js file link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="ConfigureSystem.js"></script>
+    <script src="GetItemInLocalStorage.js"></script>
 </head>
 <body>
     <!-- header section starts -->
@@ -20,23 +21,26 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="../images/logo.png" alt="logo" />
+                <a href="../UserHome/UserHome.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="" >dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
-        
+
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a href="../Login_with_Gmail/infoManage.php">
+
+                </a></div>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="login">Đăng xuất</a>
+                <a href="login.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>

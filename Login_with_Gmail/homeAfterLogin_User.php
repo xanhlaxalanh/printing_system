@@ -12,7 +12,6 @@
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="StudentServices.css" >
 
 </head>
 <body>
@@ -37,7 +36,7 @@
             <div class="first-option"><a href="infoManage.php">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                        echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
+                        echo '<span class="username">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
                     }
                 ?>
                 </a>
@@ -61,8 +60,8 @@
 
         <div class="service-list">
             <div><a href="">đăng kí in tài liệu</a></div>
-            <div><a href="">mua thêm trang in</a></div>
-            <div class="last-service"><a href="">nhật kí sử dụng dịch vụ in</a></div>
+            <div><a href="../BuyPrintingPages/BeforeLoad.php">mua thêm trang in</a></div>
+            <div class="last-service"><a href="../ActivityLog/BeforeLoad.php">nhật kí sử dụng dịch vụ in</a></div>
         </div>
     </div>
 
@@ -113,6 +112,11 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- custom js file link -->
-    <script src="script.js"></script>
 </body>
 </html>
+
+<script>
+    localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
+    localStorage.setItem("Role", <?php echo "\"". $_SESSION['role'] ."\"" ?>);
+    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+</script>

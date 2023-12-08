@@ -1,6 +1,12 @@
 <?php
 @include '../ConnectDB.php';
+session_start();
+
+$ID = $_SESSION['id'];
+$Username = $_SESSION['username'];
+$Role = $_SESSION['role'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +19,7 @@
     <!-- swiper css link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <!-- font awesome cdn link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
 
 
     <!-- remix icon link -->
@@ -21,6 +27,16 @@
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../ActivityLog/actstyle.css">
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+        var role = "<?php echo $Role; ?>";
+        console.log(role);
+        <?php var_dump($Role); ?>
+        window.onload = function () {
+            if (role != "Student") {
+                window.location.href = "../Login_with_Gmail/home.php";
+            }
+        }
+    </script>
 </head>
 
 <body><!--onload="timer = setTimeout('auto_reload()',10000);">
@@ -29,23 +45,26 @@
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="../images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="">dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><a href="../Login_with_Gmail/infoUser.php">
+                    <?php echo $Username; ?>
+                </a></div>
             <div class="seperator">|</div>
             <div>
-                <a href="login.php" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -273,7 +292,7 @@
     <!-- END POP UP -->
 
     <?php
-    $result = mysqli_query($conn, "CALL displayLog('1');");
+    $result = mysqli_query($conn, "CALL displayLog($ID);");
     $data = $result->fetch_all(MYSQLI_ASSOC);
     ?>
     <div class="body-side">

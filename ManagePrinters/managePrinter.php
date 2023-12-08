@@ -20,6 +20,7 @@ if (isset($_POST['campus'])) {
 
     <link rel="stylesheet" href="./globalManagePrinter.css" />
     <link rel="stylesheet" href="./managePrinter.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
 
     <!-- swiper css link -->
@@ -35,14 +36,26 @@ if (isset($_POST['campus'])) {
     <!-- header section starts -->
 
     <section class="header">
-        <div class="logo">
-            <a href="#">
-                <img src="/images/logo.png" alt="logo" />
-                <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
-            </a>
+        <div class="left-side">
+            <div class="logo">
+                <a href="#">
+                    <img src="/images/logo.png" alt="logo" />
+                    <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
+                </a>
+            </div>
+            <div class="menu-bar">
+                <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
+                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
+            </div>
         </div>
 
-        <a href="login.php" class="login">Đăng nhập</a>
+        <div class="right-side">
+            <div class="username">Username</div>
+            <div class="seperator">|</div>
+            <div>
+                <a href="#" class="login">Đăng xuất</a>
+            </div>
+        </div>
     </section>
 
     <!-- header section ends -->

@@ -1,6 +1,10 @@
 <?php
-
-
+session_start();
+if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
+    $userId = $_SESSION['student_id'];
+} else {
+    $userId = 1234567;
+}
 @include 'database.php';
 $maxfilesize = 50 * 1024; //50MB
 $allowUpload = true;
@@ -112,6 +116,7 @@ if (isset($_POST['campus'])) {
     $selectedCampus = null;
 }
 
+
 ?>
 
 
@@ -124,6 +129,7 @@ if (isset($_POST['campus'])) {
 
     <link rel="stylesheet" href="./globalPrintRequest.css" />
     <link rel="stylesheet" href="./printRequest.css" />
+    <link rel="stylesheet" type="text/css" href="../style.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" />
 
     <!-- swiper css link -->
@@ -135,7 +141,6 @@ if (isset($_POST['campus'])) {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth.js/1.4.0/mammoth.browser.min.js"></script>
 </head>
 
 <body>
@@ -144,14 +149,26 @@ if (isset($_POST['campus'])) {
 
 
     <section class="header">
-        <div class="logo">
-            <a href="#">
-                <img src="/images/logo.png" alt="logo" />
-                <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
-            </a>
+        <div class="left-side">
+            <div class="logo">
+                <a href="#">
+                    <img src="/images/logo.png" alt="logo" />
+                    <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
+                </a>
+            </div>
+            <div class="menu-bar">
+                <div class="first-option"><a href="../MemberHome/MemberHome.php">trang chủ</a></div>
+                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
+            </div>
         </div>
 
-        <a href="login.php" class="login">Đăng nhập</a>
+        <div class="right-side">
+            <div class="username">Username</div>
+            <div class="seperator">|</div>
+            <div>
+                <a href="#" class="login">Đăng xuất</a>
+            </div>
+        </div>
     </section>
 
     <!-- header section ends -->
@@ -292,8 +309,31 @@ if (isset($_POST['campus'])) {
                     // Clear the file input to prevent uploading the invalid file
                     fileInput.value = '';
                 } else {
-                    var fileName = fileInput.files[0].name;
+                    var file = fileInput.files[0];
+                    var fileName = file.name;
                     document.getElementById("uploadedFileName").textContent = fileName;
+                    var uploadedFileName = fileName;
+                    var userId = var userId = <?php echo json_encode($userId); ?>;
+                    var fileId = btoa(uploadedFileName.substring(0, 10));
+                    $.ajax({
+                        url: 'sendFile.php',
+                        method: 'POST',
+                        data: {
+                            fileId: fileId,
+                            uploadedFileName: uploadedFileName,
+                            userId: userId,
+                            fileType:fileType
+                        },
+                        success: function (response) {
+                            // Handle the response from the server
+                            console.log(response);
+                            console.log("uploadupload");
+                        },
+                        error: function (xhr, status, error) {
+                            // Handle any errors
+                            console.log(error);
+                        }
+                    });
                 }
             }
         });
@@ -420,24 +460,6 @@ if (isset($_POST['campus'])) {
             reader.readAsArrayBuffer(file);
         }
 
-        // TODO: countDocxPages
-        // function countDocxPages(file) {
-        //     var reader = new FileReader();
-        //     reader.onload = function (e) {
-        //         var arrayBuffer = e.target.result;
-        //         var docxFile = new Uint8Array(arrayBuffer);
-        //         var options = { arrayBuffer: docxFile };
-
-        //         mammoth.extractRawText(options)
-        //             .then(function (result) {
-        //                 var text = result.value;
-        //                 var numPages = Math.ceil(text.length / 1800); // need to assume 
-        //                 document.getElementById("uploadedFileName").textContent += ' (' + numPages + ' pages)';
-        //             })
-        //             .done();
-        //     };
-        //     reader.readAsArrayBuffer(file);
-        // }
     </script>
 </body>
 
