@@ -76,12 +76,11 @@ $Role = $_SESSION['role'];
                 placeholder="Search for student name..">
             <table border="1" id="spso_log_table" style="overflow-y:scroll;height:300px;display:block;">
                 <colgroup>
-                    <col span="5">
+                    <col span="4">
                 </colgroup>
 
                 <thead>
                     <tr>
-                        <th>Họ sinh viên</th>
                         <th>Tên sinh viên</th>
                         <th>Email</th>
                         <th>Ngày sinh</th>
@@ -96,12 +95,8 @@ $Role = $_SESSION['role'];
                         echo '
                         <tr>
                             <td>
-                            
-                                ' . $row["Lname"] . ' 
-                            </td>
-                            <td>
                             <a class="nameClick" href="../SPSO_log/spso_log.php?id=' . $row["ID"] . '&nameStudent=' . $row["Lname"] . " " . $row['Fname'] . ' ">
-                                ' . $row['Fname'] . '</a>
+                                ' . $row["Lname"]  . " " .  $row['Fname'] . '</a>
                             </td>
                             <td>
                                 ' . $row['Email'] . '
