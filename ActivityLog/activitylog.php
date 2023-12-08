@@ -1,6 +1,11 @@
 <?php
-@include '../ConnectDB.php';
+    @include '../ConnectDB.php';
+    session_start();
+
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +47,7 @@
         </div>
 
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><?php echo $Username; ?></div>
             <div class="seperator">|</div>
             <div>
                 <a href="login.php" class="login">Đăng xuất</a>

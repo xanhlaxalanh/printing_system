@@ -41,18 +41,15 @@ section {
 
 .header {
     position: sticky;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
     background-color: var(--white);
     display: flex;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     box-shadow: var(--box-shadow);
     align-items: center;
     justify-content: space-between;
-    height: 80px;
 }
 
 .header .left-side {
@@ -86,17 +83,28 @@ section {
     text-decoration: underline;
 }
 
-.header .right-side {
+.header .right-side{
     display: flex;
     flex-flow: wrap;
     align-items: center;
-    width: 200px;
+    min-width: 200px;
     justify-content: space-around;
 }
 
 .header .right-side .username,
 .header .right-side .seperator {
     font-size: 16px;
+    color: #676c70;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.header .right-side .seperator {
+    padding: 5px;
+}
+
+.header .right-side .username:hover {
+    text-decoration: underline;
 }
 
 .header .left-side .menu-bar {

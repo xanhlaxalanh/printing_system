@@ -1,3 +1,10 @@
+<?php
+    session_start();
+
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +18,29 @@
     <link rel="stylesheet" type="text/css" href="BuyPrintingPages.css" >
 
     <!-- js file link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="BuyPrintingPages.js"></script>
+
+    <script>
+        getItemInLocalStorage();
+
+        function getItemInLocalStorage() {
+            let id = localStorage.getItem("ID");
+            let username = localStorage.getItem("Username");
+
+            $.ajax({
+                type: "POST",
+                url: "SetSESSION.php",
+                data: {
+                    id: id,
+                    username: username
+                },
+                success: function (response) {
+                    console.log('Get Item Successfully!');
+                }
+            });
+        }
+    </script>
 
 </head>
 <body>
@@ -33,7 +62,7 @@
         </div>
         
         <div class="right-side">
-            <div class="username">Username</div>
+            <div class="username"><?php echo $Username; ?></div>
             <div class="seperator">|</div>
             <div>
                 <a href="#" class="login">Đăng xuất</a>
@@ -56,8 +85,7 @@
                 // Get Balance
                 $sql = "SELECT Balance 
                     FROM Users
-                    WHERE ID = 1
-                    ";
+                    WHERE ID =". $ID;
                 $result = $conn->query($sql);
             
                 if ($result->num_rows > 0) {
@@ -129,7 +157,7 @@
 
                     $sql = "SELECT Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID
                             FROM BPP_Order
-                            WHERE Owner_ID = 1
+                            WHERE Owner_ID = ". $ID ."
                             ORDER BY Order_Creation_Date DESC
                             ";
                     $result = $conn->query($sql);
