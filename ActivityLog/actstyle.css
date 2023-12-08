@@ -164,6 +164,10 @@
 table {
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
+    overflow-y: scroll;
+    height: 500px;
+    display: block;
 
 }
 

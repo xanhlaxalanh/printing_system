@@ -172,7 +172,6 @@ $Role = $_SESSION['role'];
                 </table>
         <div class="button-group">
             <button onclick="ClosePopup(\'sendprint_popup\', \'activitylog.php\')" class="button" type="button">Thoát</button>
-            <a href="#" type="button" class="button">Chỉnh sửa</a>
             <a class="button" href="send_activitylog.php?send_confirm_id=' . $send_id . '" type="button">Xác nhận</a>
         </div>
         </div>
@@ -365,7 +364,7 @@ echo "<p style='border:None; color:var(--text-color); font-weight:500; font-size
                                 else if ($row['state_requestprint'] == '2')
                                     $state = 'Đã hoàn thành';
                                 else if ($row['state_requestprint'] == '1')
-                                    $state = 'Đã gửi in';
+                                    $state = '<p style="color:blue;">Đã gửi in<p>';
                                 else
                                     $state = 'Lỗi';
                                 ?>

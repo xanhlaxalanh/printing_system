@@ -90,7 +90,7 @@ $Role = $_SESSION['role'];
                 </thead>
                 <tbody>
                     <?php
-                    $result = mysqli_query($conn, "select * from users ORDER BY Fname;");
+                    $result = mysqli_query($conn, "select * from users where users.Role = 'Student' ORDER BY Fname;");
                     $data = $result->fetch_all(MYSQLI_ASSOC);
                     foreach ($data as $row) {
                         echo '

@@ -3,6 +3,7 @@
 session_start();
 $ID = $_SESSION['id'];
 $Username = $_SESSION['username'];
+$Role = $_SESSION['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +25,14 @@ $Username = $_SESSION['username'];
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../ActivityLog/actstyle.css">
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <script>
+        var role = "<?php echo $Role; ?>";
+        window.onload = function () {
+            if (role != "SPSO") {
+                window.location.href = "../Login_with_Gmail/home.php";
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -32,23 +41,28 @@ $Username = $_SESSION['username'];
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="../images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
 
             <div class="menu-bar">
-                <div class="first-option"><a href="">trang chủ</a></div>
-                <div class="second-option"><a href="">dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username"><?php echo $Username; ?></div>
+            <div class="username">
+                <a href="../Login_with_Gmail/infoManage.php">
+                    <?php echo $Username; ?>
+                </a>
+            </div>
             <div class="seperator">|</div>
             <div>
-                <a href="login.php" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -161,8 +175,8 @@ $Username = $_SESSION['username'];
                             <td> ';
                             if ($row['state_requestprint'] == '0')
                                 $state = '<a  class="payment_link_text">Đã lưu</a>';
-                            else if ($row['state_requestprint'] == '1')
-                                $state = 'Đã hoàn thành';
+                            else if ($row['state_requestprint'] == '2')
+                                $state = '<p style="color:blue;">Đã hoàn thành</p>';
                             else
                                 $state = 'Đã gửi in';
                             echo $state;
