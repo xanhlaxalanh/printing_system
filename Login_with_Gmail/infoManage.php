@@ -74,15 +74,6 @@
             </h2></div>
 
             <div><h2>
-                MSSV:
-                <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['id'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['id']) . '</span>';
-                }
-                ?>
-            </h2></div>
-
-            <div><h2>
                 Email:
                 <?php
                 if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['email'])) {
