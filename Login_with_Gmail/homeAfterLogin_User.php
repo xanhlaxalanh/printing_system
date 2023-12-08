@@ -33,7 +33,7 @@
         </div>
         
         <div class="right-side">
-            <div class="username"><a href="infoManage.php">
+            <div class="username"><a href="infoUser.php">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
                         echo htmlspecialchars($_SESSION['user_info']['name']);

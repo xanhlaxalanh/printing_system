@@ -1,10 +1,10 @@
 <?php
-@include '../ConnectDB.php';
-session_start();
+    @include '../ConnectDB.php';
+    session_start();
 
-$ID = $_SESSION['id'];
-$Username = $_SESSION['username'];
-$Role = $_SESSION['role'];
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,11 +52,21 @@ $Role = $_SESSION['role'];
 
             <div class="right-side">
                 <div class="username">
-                    <a><?php echo $Username; ?></a>
+                    <a id="info" href=""><?php echo $Username; ?></a>
+                    <script>
+                        var info = document.getElementById('info');
+                        var role = "<?php echo $Role; ?>";
+                        if (role == "Student") {
+                            info.href = "../Login_with_Gmail/infoUser.php";
+                        }
+                        else{
+                            info.href = "../Login_with_Gmail/infoManage.php";
+                        }
+                    </script>
                 </div>
                 <div class="seperator">|</div>
                 <div>
-                    <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
+                    <a href="../Login_with_Gmail/home.php" class="logout">Đăng xuất</a>
                 </div>
             </div>
     </section>

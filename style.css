@@ -83,7 +83,7 @@ section {
     text-decoration: underline;
 }
 
-.header .right-side{
+.header .right-side {
     display: flex;
     flex-flow: wrap;
     align-items: center;

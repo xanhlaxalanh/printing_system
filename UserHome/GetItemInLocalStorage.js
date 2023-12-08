@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function(e) {
 function getItemInLocalStorage() {
     let id = localStorage.getItem("ID");
     let username = localStorage.getItem("Username");
-let role = localStorage.getItem("Role");
+    let role = localStorage.getItem("Role");
+    
     $.ajax({
         type: "POST",
         url: "SetSESSION.php",
