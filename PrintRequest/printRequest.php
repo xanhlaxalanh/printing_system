@@ -468,7 +468,7 @@ if (isset($_POST['campus'])) {
                     document.getElementById("uploadedFileName").textContent += ' (' + numPages + ' pages)';
                 });
             };
-
+            reader.readAsArrayBuffer(file);
         }
 
         function countPptxPages(file) {
