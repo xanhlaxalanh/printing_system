@@ -95,16 +95,14 @@
     border-color: var(--fontColor);
     border-radius: 4px;
     margin-left: 16px;
+    font-size: 16px;
     font-weight: 500;
-    width: 220px;
+    
     padding: 10px;
-}
-
-.body .registration input {
     text-align: center;
 }
 
-.body .registration input::placeholder {
+.body .registration #quantity::placeholder {
     color: rgba(0, 0, 0, 0.25);
     font-size: 16px;
     text-align: center;

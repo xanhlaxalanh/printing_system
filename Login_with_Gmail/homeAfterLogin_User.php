@@ -62,7 +62,7 @@
 
         <div class="service-list">
             <div><a href="../PrintRequest/printRequest.php">đăng kí in tài liệu</a></div>
-            <div><a href="../BuyPrintingPages/BuyPrintingPages.php">mua thêm trang in</a></div>
+            <div><a href="../BuyPrintingPages/BeforeLoad.php">mua thêm trang in</a></div>
             <div class="last-service"><a href="../ActivityLog/BeforeLoad.php">nhật kí sử dụng dịch vụ in</a></div>
         </div>
     </div>

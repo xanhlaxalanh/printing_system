@@ -3,7 +3,6 @@
 
     $ID = $_SESSION['id'];
     $Username = $_SESSION['username'];
-    $Role = $_SESSION['role'];
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +67,7 @@
                 // Get Balance
                 $sql = "SELECT Balance 
                     FROM Users
-                    WHERE ID =". $ID;
+                    WHERE ID = '$ID'";
                 $result = $conn->query($sql);
             
                 if ($result->num_rows > 0) {
@@ -86,25 +85,6 @@
             <button type="submit" id="submit-order" name='submit-order' class="submit-order">Đăng ký</button>
         </form>
         
-        <!-- Popup to confirm order starts-->
-        <div class="popup" id="popup">
-            <div class="overlay"></div>
-            <div class="popup-content">
-                <h2>Đăng ký mua trang in</h2>
-                <?php
-                    echo "<p>Số lượng: $quantity trang (Khổ A4)</p>";
-                ?>
-                <?php
-                    echo "<p>Tổng số tiền: $total_price VNĐ</p>";
-                ?>
-
-                <form   class="controls">
-                    <button type="button" class="close-btn" onclick="closePopup('#popup')">Hủy</button>
-                    <button type="submit" name='' class="submit-btn">Xác nhận</button>
-                </form>
-            </div>
-        </div>
-        <!-- Popup to confirm order ends-->
 
         <?php
             // Get Paper_Price

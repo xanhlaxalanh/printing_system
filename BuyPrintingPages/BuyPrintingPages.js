@@ -8,6 +8,7 @@ function validateInputs() {
     }
 
     window.alert('Đăng kí thành công!')
+    return true;
 };
 
 function confirmPay() {
