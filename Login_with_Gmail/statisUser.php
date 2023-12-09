@@ -3,18 +3,6 @@
 
     @include 'database.php';
 
-    $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
-        FROM print_request
-        where File_ID in (select id from file where file.User_ID = '1')
-        GROUP BY MONTHNAME(Creation_Date)
-        ORDER BY MONTHNAME(Creation_Date) DESC");
-        
-    $dataPoints = array();
-
-    while ($row = mysqli_fetch_assoc($sql)) {
-        array_push($dataPoints, array("y" => $row['sum'], "label" => $row['Date_']));
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +40,7 @@
         </div>
 
         <div class="right-side">
-            <div class="first-option"><a href="infoManage.php">
+            <div class="username"><a href="infoManage.php">
                 <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
                         echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
@@ -98,12 +86,16 @@
                     <col>
                     <col>
                     <col>
+                    <col>
+                    <col>
                 </colgroup>
 
                 <thead>
                     <tr>
                         <th>Họ</th>
                         <th>Tên</th>
+                        <th>Email</th>
+                        <th>Ngày sinh</th>
                         <th>Số giấy đã sử dụng</th>
                     </tr>
                 </thead>
@@ -132,18 +124,45 @@
                     if (isset($_POST['startday']) && isset($_POST['endday'])) {
                         list($start_Year, $start_Month, $start_Day) = handle_date($_POST['startday']);
                         list($end_Year, $end_Month, $end_Day) = handle_date($_POST['endday']);
-                        $result = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum, users.Fname as fn, users.Lname as ln, users.ID as id
+                        $result = mysqli_query($conn, "SELECT SUM(Total_Sheet) as sum, users.Fname as fn, users.Lname as ln, users.ID as id, users.Email as e, users.Date_Of_Birth as db
                         FROM users join file on users.ID = file.User_ID
                         join print_request on file.ID = print_request.File_ID
                         where print_request.Creation_Date between '$start_Year-$start_Month-$start_Day 00:00:00' and '$end_Year-$end_Month-$end_Day 23:59:00'
                         GROUP BY id
                         ORDER BY sum DESC;");
+
+                        $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
+                        FROM print_request
+                        where File_ID in (select id from file)
+                        and print_request.Creation_Date between '$start_Year-$start_Month-$start_Day 00:00:00' and '$end_Year-$end_Month-$end_Day 23:59:00'
+                        GROUP BY MONTHNAME(Creation_Date)
+                        ORDER BY MONTHNAME(Creation_Date) DESC");
+
+                        $dataPoints = array();
+
+                        while ($row = mysqli_fetch_assoc($sql)) {
+                        array_push($dataPoints, array("y" => $row['sum'], "label" => $row['Date_']));
+                        }
+
+
                     } else {
-                        $result = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum, users.Fname as fn, users.Lname as ln, users.ID as id
+                        $result = mysqli_query($conn, "SELECT SUM(Total_Sheet) as sum, users.Fname as fn, users.Lname as ln, users.ID as id, users.Email as e, users.Date_Of_Birth as db
                         FROM users join file on users.ID = file.User_ID
                         join print_request on file.ID = print_request.File_ID
-                        where print_request.Creation_Date between '2023-01-01 00:00:00' and '2023-12-31 23:59:00'
-                        GROUP BY id;");
+                        GROUP BY id
+                        ORDER BY sum DESC;");
+
+                        $sql = mysqli_query($conn, "SELECT MONTHNAME(Creation_Date) as Date_, SUM(Total_Sheet) as sum
+                        FROM print_request
+                        where File_ID in (select id from file)
+                        GROUP BY MONTHNAME(Creation_Date)
+                        ORDER BY MONTHNAME(Creation_Date) DESC");
+
+                        $dataPoints = array();
+
+                        while ($row = mysqli_fetch_assoc($sql)) {
+                        array_push($dataPoints, array("y" => $row['sum'], "label" => $row['Date_']));
+                        }
                     }
 
                     $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -161,6 +180,14 @@
                                     <td>
                                         ' . $row['fn'] . '
                                     </td>
+
+                                    <td>
+                                        ' . $row['e'] . '
+                                    </td>
+
+                                    <td>
+                                        ' . $row['db'] . '
+                                    </td>
                                     
                                     <td>
                                         ' . $row['sum'] . '
@@ -172,15 +199,14 @@
                 </tbody>
             </table>
         </section>
-
+        <!-- <div id="chartContainer" style="height: 370px; width: 100%;"></div> -->
         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-        
         <script>
         window.onload = function () {
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
-                    text: "Thống kê số page Sinh đã in"
+                    text: "Thống kê số page Sinh viên đã in"
                 },
                 axisY: {
                     title: "Tổng số page"
@@ -193,7 +219,7 @@
             chart.render();
 
         }
-    </script>
+        </script>
     </div>
     <style>
         /* Design Calendar */

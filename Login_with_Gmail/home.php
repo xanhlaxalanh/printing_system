@@ -21,7 +21,7 @@ $url = $client->createAuthUrl();
         <title>Trang chủ</title>
 
             <!-- custom css file link -->
-            <link rel="stylesheet" type="text/css" href="style.css">
+            <link rel="stylesheet" type="text/css" href="../style.css">
             <link rel="stylesheet" type="text/css" href="UserHome.css">
             <title>trang chủ</title>
 
@@ -31,7 +31,7 @@ $url = $client->createAuthUrl();
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
             <!-- custom css file link -->
-            <link rel="stylesheet" type="text/css" href="style.css">
+            <link rel="stylesheet" type="text/css" href="../logstyle.css">
 
     </head>
 
