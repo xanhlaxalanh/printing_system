@@ -456,15 +456,17 @@ if (isset($_POST['campus'])) {
                 var loadingTask = pdfjsLib.getDocument({ data: pdfData });
                 loadingTask.promise.then(function (pdf) {
                     var numPages = pdf.numPages;
-                    $.post("../PrintRequest/sendPrintAttributes.php",
+                    console.log(numPages);
+                    $.post("../PrintRequest/printAttributes.php",
                         {
                             numpage: numPages
                         },
                         function (data, status) {
-                            alert("Data: " + data + "\nStatus: " + status); //update
-                            //window.location = '../PrintRequest/sendPrintAttributes.php';
+                            alert("\nStatus: " + status); //update
+                            //window.location = '../PrintRequest/printAttributes.php';
 
                         });
+                    
                     document.getElementById("uploadedFileName").textContent += ' (' + numPages + ' pages)';
                 });
             };

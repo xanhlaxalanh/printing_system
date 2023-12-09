@@ -118,6 +118,7 @@
     font-weight: 500px;
     font-size: 16px;
     color: var(--white);
+    cursor: pointer;
 }
 
 .body .registration-history {

@@ -1,3 +1,7 @@
+<?php
+@include '../ConnectDB.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +23,12 @@
 
 <body>
     <!-- TODO: choose print attributes and deliver to print request through a database  -->
+    <?php
+    if (isset($_POST['numpage'])) {
+        $_SESSION['numpage'] = $_POST['numpage'];
+        var_dump($_SESSION['numpage']);
+    }
+    ?>
     <div class="print-attributes-container">
         <div class="chn-thuc-tnh">Chọn thuộc tính in</div>
         <div class="pages-to-print-parent">
@@ -270,6 +280,8 @@
                      var pageQuery = pagesQueryArray[j];
  */
                 // Send the print attributes to the server-side script
+
+                var numpages = <?php echo $_SESSION['numpage']; ?>;
                 $.post("../PrintRequest/sendPrintAttributes.php",
                     {
                         duplexOption: duplexOption,
@@ -278,8 +290,8 @@
                         numOfCopiesOption: numOfCopiesOption,
                         pagesArray: pagesToPrintOption,
                         printerId: printerId,
-                        name: uploadedFileName
-
+                        name: uploadedFileName,
+                        numpage: numpages
                     },
                     function (data, status) {
                         // alert("Data: " + data + "\nStatus: " + status); //update

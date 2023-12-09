@@ -25,6 +25,7 @@ $paperSize = $_POST['pageLayoutOption'] ?? '';
 $paperSize = trim($paperSize);
 $pagesPerSheet = '1';
 $filenumpage = $_POST['numpage'] ?? '';
+var_dump($filenumpage);
 $filename = $_POST['name'] ?? '';
 // Set Total_Sheet as the value of pagesToPrintOption
 $pageRange = $_POST['pagesArray'] ?? ''; //1-5
@@ -93,7 +94,7 @@ $uploadfile = mysqli_query($conn, "INSERT INTO file(Name,File_Link,Type,Upload_D
 if ($uploadfile) {
         mysqli_multi_query($conn, "SELECT MAX(ID) INTO @fileid from file;");
         mysqli_multi_query($conn, "INSERT INTO print_request ( Creation_Date, Pages_Per_Sheet, Number_Of_Copies, Page_Size, `One/Doubled_Sided`, Total_Sheet, Status, File_ID)
-        VALUES (NOW(), '$pagesPerSheet', '$numOfCopies', '$paperSize', '$duplex', NULL , '0', @fileid);");
+        VALUES (NOW(), '$pagesPerSheet', '$numOfCopies', '$paperSize', '$duplex', NULL, '0', @fileid);");
         //if ($stmt->execute()) {
 
         $pageRangeArray = explode(",", $pageRange);

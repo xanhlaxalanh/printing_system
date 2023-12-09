@@ -84,10 +84,10 @@ $Role = $_SESSION['role'];
         $Now = new DateTime('now', new DateTimeZone('Asia/Ho_Chi_Minh'));
         //  <!--End get data task -->
         echo '<div class="popup" id="sendprint_popup">
-            <img src="../images/message.jpg" width="50px" height="50px">
+            
             <div class="popup_text">
                 <h3 style="margin-top:5%; color:var(--main-color)">Gửi yêu cầu in</h3>
-                <table>
+                <table style="overflow-y:none;height:300px;display:block;">
                     <tr>
                         <td>
                         <th class="title_"><i class="ri-timer-fill"></i>Thời gian hiện tại:</th>
