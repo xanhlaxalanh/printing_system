@@ -7,6 +7,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,14 +15,15 @@
     <title>Mua Thêm Trang In</title>
 
     <!-- custom css file link -->
-    <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="BuyPrintingPages.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="BuyPrintingPages.css">
 
     <!-- js file link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="BuyPrintingPages.js"></script>
 
 </head>
+
 <body>
     <!-- header section starts -->
 
@@ -29,7 +31,7 @@
         <div class="left-side">
             <div class="logo">
                 <a href="../UserHome/BeforeLoad.php">
-                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
+                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
@@ -62,20 +64,20 @@
         <div class="balance-container">
             <p>Số trang in hiện tại:</p>
             <?php
-                @include_once("../ConnectDB.php");
+            @include_once("../ConnectDB.php");
 
-                // Get Balance
-                $sql = "SELECT Balance 
+            // Get Balance
+            $sql = "SELECT Balance 
                     FROM Users
-                    WHERE ID = '$ID'";
-                $result = $conn->query($sql);
-            
-                if ($result->num_rows > 0) {
-                    $row = $result->fetch_assoc();
-                    $balance = $row['Balance'];
-                }
+                    WHERE ID =" . $ID;
+            $result = $conn->query($sql);
 
-                echo "<p class='balance'>$balance trang (Khổ A4)</p>";
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $balance = $row['Balance'];
+            }
+
+            echo "<p class='balance'>$balance trang (Khổ A4)</p>";
             ?>
         </div>
 
@@ -84,22 +86,21 @@
             <input type="number" id="quantity" name="quantity" placeholder="Số lượng trang (Khổ A4)" min="1">
             <button type="submit" id="submit-order" name='submit-order' class="submit-order">Đăng ký</button>
         </form>
-        
 
         <?php
-            // Get Paper_Price
-            $sql = "SELECT Paper_Price 
+        // Get Paper_Price
+        $sql = "SELECT Paper_Price 
             FROM Configuration
             ";
-            $result = $conn->query($sql);
+        $result = $conn->query($sql);
 
-            $price = 0;
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $price = $row['Paper_Price'];
-            }
+        $price = 0;
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $price = $row['Paper_Price'];
+        }
 
-            echo "<p class='info-about-price'>(Lệ phí: $price VNĐ/trang in khổ  A4)</p>";
+        echo "<p class='info-about-price'>(Lệ phí: $price VNĐ/trang in khổ  A4)</p>";
         ?>
 
         <div class="registration-history">
@@ -120,7 +121,7 @@
 
                     $sql = "SELECT Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID
                             FROM BPP_Order
-                            WHERE Owner_ID = ". $ID ."
+                            WHERE Owner_ID = " . $ID . "
                             ORDER BY Order_Creation_Date DESC
                             ";
                     $result = $conn->query($sql);
@@ -129,23 +130,23 @@
                         while ($row = $result->fetch_assoc()) {
                             $payment_status = 'Đã thanh toán';
                             $status = 'paied';
-                            if($row["Payment_Status"] == 0) {
+                            if ($row["Payment_Status"] == 0) {
                                 $payment_status = 'Thanh toán ngay';
                                 $status = 'unpaid';
                             }
-                        
+
                             // Calculate Total_Price = Quantity * Paper_Price
                             $total_price = number_format($price * $row['Quantity']);
 
                             echo "<tr>
-                                <td>".$row["Order_ID"]."</td>
-                                <td>".$row["Order_Creation_Date"]."</td>
-                                <td>".$row["Quantity"]."</td>
-                                <td class='total-price'>".$total_price."</td>
+                                <td>" . $row["Order_ID"] . "</td>
+                                <td>" . $row["Order_Creation_Date"] . "</td>
+                                <td>" . $row["Quantity"] . "</td>
+                                <td class='total-price'>" . $total_price . "</td>
                                 <td class='payment-status $status'>
-                                    <a href='UpdateBalance.php?Owner_ID=".$row['Order_ID']."' class='pay-btn  payment-btn $status' onclick='return confirmPay()'>".$payment_status."</a>
+                                    <a href='UpdateBalance.php?Owner_ID=" . $row['Order_ID'] . "' class='pay-btn  payment-btn $status' onclick='return confirmPay()'>" . $payment_status . "</a>
                                     <span>/ </span>
-                                    <a href='DeleteAnOrder.php?Order_ID=".$row['Order_ID']."' class='delete-btn payment-btn' onclick='return confirmDelete()'>Xóa</a>
+                                    <a href='DeleteAnOrder.php?Order_ID=" . $row['Order_ID'] . "' class='delete-btn payment-btn' onclick='return confirmDelete()'>Xóa</a>
                                 </td>
                             </tr>";
                         }
@@ -162,7 +163,7 @@
                 </tbody>
             </table>
         </div>
-        
+
     </div>
 
     <!-- body section ends -->
@@ -185,9 +186,16 @@
 
                 <div class="box">
                     <h3>liên hệ</h3>
-                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
-                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
-                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                    <a href="#">
+                        <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh
+                        City, Vietnam
+                    </a>
+                    <a href="#">
+                        <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234)
+                    </a>
+                    <a href="mailto:elearning@hcmut.edu.vn" class="email">
+                        <div class="email-icon"></div>elearning@hcmut.edu.vn
+                    </a>
                 </div>
             </div>
         </section>
@@ -206,4 +214,5 @@
 
 
 </body>
+
 </html>

@@ -161,6 +161,14 @@
     font-weight: 600;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow-y: scroll;
+    display: block;
+
+}
 
 th,
 td {
