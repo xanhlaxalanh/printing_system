@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 @include 'database.php';
-=======
-<<<<<<< HEAD
-@include '../ConnectDB.php';
 
 session_start();
 
@@ -27,48 +23,11 @@ if (isset($_POST['Change'])) {
         echo ("Cập nhật không thành công");
     }
 }
-=======
-    @include 'database.php';
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
-
-session_start();
-
-$ID = $_SESSION['student'];
-if (isset($_POST['Change'])) {
-    $c_Date_Of_Birth = $_POST['Date_Of_Birth'];
-    $c_Sex = $_POST['Sex'];
-
-    $date = DateTime::createFromFormat('Y-m-d', $c_Date_Of_Birth);
-    if (!$date || $date->format('Y-m-d') !== $c_Date_Of_Birth) {
-        echo ("Ngày sinh không hợp lệ");
-        return;
-    }
-<<<<<<< HEAD
-
-    $c_gender = $c_Sex == 'Nam' ? 1 : 0;
-
-    $sql = "UPDATE users SET Date_Of_Birth = '$c_Date_Of_Birth', Sex = '$c_gender' WHERE ID = $ID";
-    if (mysqli_query($conn, $sql)) {
-        echo ("Cập nhật thành công");
-    } else {
-        echo ("Cập nhật không thành công");
-    }
-}
-=======
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,26 +35,11 @@ if (isset($_POST['Change'])) {
     <title>Chỉnh sửa thông tin</title>
 
     <!-- custom css file link -->
-<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="../style.css">
     <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css">
 
 </head>
 
-=======
-<<<<<<< HEAD
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css">
-
-</head>
-
-=======
-    <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css" >
-
-</head>
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
 <body>
     <!-- header section starts -->
 
@@ -110,10 +54,6 @@ if (isset($_POST['Change'])) {
 
             <div class="menu-bar">
                 <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
-<<<<<<< HEAD
-                <div class="second-option"><a href="homeAfterLogin_User.php">dịch vụ của tôi</a></div>
-=======
-<<<<<<< HEAD
                 <div class="second-option"><a href="homeAfterLogin_User.php">dịch vụ của tôi</a></div>
             </div>
         </div>
@@ -125,37 +65,11 @@ if (isset($_POST['Change'])) {
                         echo htmlspecialchars($_SESSION['user_info']['name']);
                     }
                     ?>
-=======
-                <div class="second-option"><a href="homeAfterLogin_User.php" >dịch vụ của tôi</a></div>
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
-            </div>
-        </div>
-
-        <div class="right-side">
-            <div class="username"><a href="infoUser.php">
-                    <?php
-                    if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                        echo htmlspecialchars($_SESSION['user_info']['name']);
-                    }
-<<<<<<< HEAD
-                    ?>
-=======
-                ?>
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
                 </a>
             </div>
 
             <div class="seperator">|</div>
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
-            
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
             <div>
                 <a href="home.php" class="logout">Đăng xuất</a>
             </div>
@@ -174,16 +88,10 @@ if (isset($_POST['Change'])) {
 
         <form method="POST" action="">
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
             <div class="form-group">
                 <label for="Date_Of_Birth">Năm sinh: </label>
                 <input type="date" name="Date_Of_Birth" class="form-control" placeholder="YYYY-MM-DD">
             </div>
-<<<<<<< HEAD
-=======
 
             <br>
 
@@ -198,31 +106,6 @@ if (isset($_POST['Change'])) {
             <br>
 
             <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
-=======
-        <div class="form-group">
-            <label for="Date_Of_Birth">Năm sinh: </label>
-            <input type="date" name="Date_Of_Birth" class="form-control" placeholder="YYYY-MM-DD">
-        </div>
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
-
-            <br>
-
-            <div class="form-group">
-                <label for="Sex">Giới tính: </label>
-                <select name="Sex" class="form-control">
-                    <option value="Nam">Nam</option>
-                    <option value="Nữ">Nữ</option>
-                </select>
-            </div>
-
-            <br>
-
-<<<<<<< HEAD
-            <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
-=======
-        <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
         </form>
 
     </div>
@@ -250,10 +133,6 @@ if (isset($_POST['Change'])) {
 
                 <div class="box">
                     <h3>liên hệ</h3>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
                     <a href="#">
                         <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh
                         City, Vietnam
@@ -264,14 +143,6 @@ if (isset($_POST['Change'])) {
                     <a href="mailto:elearning@hcmut.edu.vn" class="email">
                         <div class="email-icon"></div>elearning@hcmut.edu.vn
                     </a>
-<<<<<<< HEAD
-=======
-=======
-                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
-                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
-                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
                 </div>
             </div>
         </section>
@@ -294,27 +165,12 @@ if (isset($_POST['Change'])) {
 
     <!-- custom js file link -->
 </body>
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
 </html>
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
     localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
-<<<<<<< HEAD
     localStorage.s etItem("Username", <?php echo "\"" . $_SESSION["name"] . "\"" ?>);
-=======
-<<<<<<< HEAD
-    localStorage.s etItem("Username", <?php echo "\"" . $_SESSION["name"] . "\"" ?>);
-=======
-    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
->>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
->>>>>>> f4d0fe7003725c245ad363c1b707c5bd39fb08bc
 
 </script>
