@@ -14,6 +14,7 @@
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css" >
+    <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css" >
 
 </head>
 <body>
@@ -114,6 +115,10 @@
                 }
                 ?>
             </h2></div>
+
+            <form method ="POST" action="insertNewInfo.php" class="registration">
+                <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
+            </form>
 
         </div>
 

@@ -1,9 +1,14 @@
 <?php
-session_start();
+    session_start();
 
+<<<<<<< HEAD
 $ID = $_SESSION['id'];
 $Username = $_SESSION['username'];
 $Role = $_SESSION['role'];
+=======
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+>>>>>>> 6047c4e0f1958ab9bafa3f715d640897c707f7af
 ?>
 
 <!DOCTYPE html>
