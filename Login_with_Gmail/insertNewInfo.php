@@ -1,33 +1,33 @@
 <?php
-    @include 'database.php';
+@include 'database.php';
 
-    session_start();
+session_start();
 
-    $ID = $_SESSION['student'];
+$ID = $_SESSION['student'];
+if (isset($_POST['Change'])) {
+    $c_Date_Of_Birth = $_POST['Date_Of_Birth'];
+    $c_Sex = $_POST['Sex'];
 
-    if(isset($_POST['Change'])){
-        $c_Date_Of_Birth = $_POST['Date_Of_Birth'];
-        $c_Sex = $_POST['Sex'];
-
-        $date = DateTime::createFromFormat('Y-m-d', $c_Date_Of_Birth);
-        if (!$date || $date->format('Y-m-d') !== $c_Date_Of_Birth) {
-            echo("Ngày sinh không hợp lệ");
-            return;
-        }
-
-        $c_gender = $c_Sex == 'Nam' ? 1 : 0;
-
-        $sql = "UPDATE users SET Date_Of_Birth = '$c_Date_Of_Birth', Sex = '$c_gender' WHERE ID = $ID";
-        if(mysqi_query($conn, $sql)){
-            echo("Cập nhật thành công");
-        }else{
-            echo("Cập nhật không thành công");
-        }
+    $date = DateTime::createFromFormat('Y-m-d', $c_Date_Of_Birth);
+    if (!$date || $date->format('Y-m-d') !== $c_Date_Of_Birth) {
+        echo ("Ngày sinh không hợp lệ");
+        return;
     }
+
+    $c_gender = $c_Sex == 'Nam' ? 1 : 0;
+
+    $sql = "UPDATE users SET Date_Of_Birth = '$c_Date_Of_Birth', Sex = '$c_gender' WHERE ID = $ID";
+    if (mysqli_query($conn, $sql)) {
+        echo ("Cập nhật thành công");
+    } else {
+        echo ("Cập nhật không thành công");
+    }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,10 +35,11 @@
     <title>Chỉnh sửa thông tin</title>
 
     <!-- custom css file link -->
-    <link rel="stylesheet" type="text/css" href="../style.css" >
-    <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css" >
+    <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css">
 
 </head>
+
 <body>
     <!-- header section starts -->
 
@@ -53,22 +54,22 @@
 
             <div class="menu-bar">
                 <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
-                <div class="second-option"><a href="homeAfterLogin_User.php" >dịch vụ của tôi</a></div>
+                <div class="second-option"><a href="homeAfterLogin_User.php">dịch vụ của tôi</a></div>
             </div>
         </div>
-        
+
         <div class="right-side">
             <div class="username"><a href="infoUser.php">
-                <?php
+                    <?php
                     if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
                         echo htmlspecialchars($_SESSION['user_info']['name']);
                     }
-                ?>
+                    ?>
                 </a>
             </div>
 
             <div class="seperator">|</div>
-            
+
             <div>
                 <a href="home.php" class="logout">Đăng xuất</a>
             </div>
@@ -87,24 +88,24 @@
 
         <form method="POST" action="">
 
-        <div class="form-group">
-            <label for="Date_Of_Birth">Năm sinh: </label>
-            <input type="date" name="Date_Of_Birth" class="form-control" placeholder="YYYY-MM-DD">
-        </div>
+            <div class="form-group">
+                <label for="Date_Of_Birth">Năm sinh: </label>
+                <input type="date" name="Date_Of_Birth" class="form-control" placeholder="YYYY-MM-DD">
+            </div>
 
-        <br>
+            <br>
 
-        <div class="form-group">
-            <label for="Sex">Giới tính: </label>
-            <select name="Sex" class="form-control">
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label for="Sex">Giới tính: </label>
+                <select name="Sex" class="form-control">
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                </select>
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
+            <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
         </form>
 
     </div>
@@ -132,9 +133,16 @@
 
                 <div class="box">
                     <h3>liên hệ</h3>
-                    <a href="#"> <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh City, Vietnam </a>
-                    <a href="#"> <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234) </a>
-                    <a href="mailto:elearning@hcmut.edu.vn" class="email"> <div class="email-icon"></div>elearning@hcmut.edu.vn </a>
+                    <a href="#">
+                        <div class="location-icon"></div>268 Ly Thuong Kiet Street Ward 14, District 10, Ho Chi Minh
+                        City, Vietnam
+                    </a>
+                    <a href="#">
+                        <div class="phone-icon"></div>(028) 38 651 670 - (028) 38 647 256 (Ext: 5258, 5234)
+                    </a>
+                    <a href="mailto:elearning@hcmut.edu.vn" class="email">
+                        <div class="email-icon"></div>elearning@hcmut.edu.vn
+                    </a>
                 </div>
             </div>
         </section>
@@ -157,11 +165,12 @@
 
     <!-- custom js file link -->
 </body>
+
 </html>
 
 <script>
     localStorage.setItem("ID", <?php echo $_SESSION['student'] ?>);
     localStorage.setItem("Role", <?php echo $_SESSION['role'] ?>);
-    localStorage.setItem("Username",<?php echo "\"". $_SESSION["name"] ."\"" ?>);
+    localStorage.s etItem("Username", <?php echo "\"" . $_SESSION["name"] . "\"" ?>);
 
 </script>
