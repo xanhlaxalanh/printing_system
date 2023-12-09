@@ -1,7 +1,7 @@
 <?php
 
 
-@include 'database.php';
+@include '../ConnectDB.php';
 // prevent campus not chosen brick the html
 if (isset($_POST['campus'])) {
     $selectedCampus = $_POST['campus'];
@@ -46,31 +46,35 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
 
     <!-- header section starts -->
 
+   
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="/images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
+
             <div class="menu-bar">
-                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
-                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username"><a>
+            <div class="username">
+                <a href="../Login_with_Gmail/infoManage.php">
                     <?php echo $Username; ?>
-                </a></div>
+                </a>
+            </div>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
-
     <!-- header section ends -->
 
     <section class="main">
@@ -134,7 +138,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
             <div class="printer-state">
                 <div class="printer-state-box">
                     <div class="printer-short-desc">
-                        <img class="print-icon" alt="" src="/images/printer-icon.svg" />
+                        <img class="print-icon" alt="" src="../images/printer-icon.svg" />
                         <!-- <p>Máy in số 1 - H6 - 101</p> -->
                         <p id="printer-info"></p>
                     </div>
@@ -177,7 +181,7 @@ if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
             <div class="box-container">
                 <div class="box">
                     <h3>student smart printing service</h3>
-                    <img src="/images/logo.png" alt="logo" />
+                    <img src="../images/logo.png" alt="logo" />
                 </div>
 
                 <div class="box">

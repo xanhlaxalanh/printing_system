@@ -1,6 +1,6 @@
 <?php
 
-@include 'database.php';
+@include '../ConnectDB.php';
 session_start();
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $userId = $_SESSION['id'];
@@ -49,25 +49,30 @@ if (isset($_POST['campus'])) {
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="/images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo"  style="cursor:pointer;"/>
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
-            <div class="menu-bar">
-                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
-                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
-            </div>
 
-            <div class="right-side">
-                <div class="username"><a>
-                        <?php echo $Username; ?>
-                    </a></div>
-                <div class="seperator">|</div>
-                <div>
-                    <a href="#" class="login">Đăng xuất</a>
+            <div class="menu-bar">
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_Manage.php">dịch vụ của tôi</a>
                 </div>
             </div>
+        </div>
+
+        <div class="right-side">
+            <div class="username">
+                <a href="../Login_with_Gmail/infoManage.php">
+                    <?php echo $Username; ?>
+                </a>
+            </div>
+            <div class="seperator">|</div>
+            <div>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
+            </div>
+        </div>
     </section>
 
     <!-- header section ends -->
@@ -200,7 +205,7 @@ if (isset($_POST['campus'])) {
             <div class="box-container">
                 <div class="box">
                     <h3>student smart printing service</h3>
-                    <img src="/images/logo.png" alt="logo" />
+                    <img src="../images/logo.png" alt="logo" />
                 </div>
 
                 <div class="box">

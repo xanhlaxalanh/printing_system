@@ -1,5 +1,5 @@
 <?php
-@include 'database.php';
+@include '../ConnectDB.php';
 
 if(isset($_POST['campus'])) {
     $selectedCampus = $_POST['campus'];

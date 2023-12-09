@@ -1,5 +1,5 @@
 <?php
-@include 'database.php';
+@include '../ConnectDB.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $printerId = $_POST['printerId'];
@@ -14,9 +14,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssss", $printerId, $printerName, $printerDesc, $campus, $building);
 
     if ($stmt->execute()) {
-        echo "New printer added successfully";
+        echo "<script>alert('New printer added successfully'); window.location = 'addPrinter.php'</script>";
+       // header('location:addPrinter.php');
     } else {
         echo "Error: " . $stmt->error;
     }
+
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-@include 'database.php';
+@include '../ConnectDB.php';
 session_start();
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     $userId = $_SESSION['id'];
@@ -158,27 +158,30 @@ if (isset($_POST['campus'])) {
     <!-- header section starts -->
 
 
+
     <section class="header">
         <div class="left-side">
             <div class="logo">
-                <a href="#">
-                    <img src="/images/logo.png" alt="logo" />
+                <a href="../UserHome/BeforeLoad.php">
+                    <img src="../images/logo.png" alt="logo" style="cursor:pointer;" />
                     <p>ĐẠI HỌC QUỐC GIA TP.HCM<br>TRƯỜNG ĐẠI HỌC BÁCH KHOA</p>
                 </a>
             </div>
+
             <div class="menu-bar">
-                <div class="first-option"><a href="../UserHome/UserHome.php">trang chủ</a></div>
-                <div class="second-option"><a href="../SPSSServices/SPSSServices.php">dịch vụ của tôi</a></div>
+                <div class="first-option"><a href="../UserHome/BeforeLoad.php">trang chủ</a></div>
+                <div class="second-option"><a href="../Login_with_Gmail/homeAfterLogin_User.php">dịch vụ của tôi</a>
+                </div>
             </div>
         </div>
 
         <div class="right-side">
-            <div class="username"><a>
+            <div class="username"><a href="../Login_with_Gmail/infoUser.php">
                     <?php echo $Username; ?>
                 </a></div>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>
@@ -247,12 +250,12 @@ if (isset($_POST['campus'])) {
                 <div class="printer-state-box">
                     <div class="flex">
                         <button class="printer-short-desc" onclick="openFileInput()">
-                            <img src=" print-icon" alt="" src="/images/upload.svg" />
+                            <img class=" print-icon" alt="" src="../images/upload-icon.svg" />
                             <p>Chọn tập tin</p>
                             <input type="file" id="fileInput" class="file-input">
                         </button>
                         <button class="printer-short-desc" onclick="openAttributesForm()">
-                            <img class="print-icon" alt="" src="/images/printer-icon.svg" />
+                            <img class="print-icon" alt="" src="../images/printer-icon.svg" />
                             <p>Tùy chọn thuộc tính</p>
                         </button>
                     </div>
@@ -275,7 +278,7 @@ if (isset($_POST['campus'])) {
             <div class="box-container">
                 <div class="box">
                     <h3>student smart printing service</h3>
-                    <img src="/images/logo.png" alt="logo" />
+                    <img src="../images/logo.png" alt="logo" />
                 </div>
 
                 <div class="box">
@@ -435,6 +438,8 @@ if (isset($_POST['campus'])) {
                     // Get the number of pages for PDF and PPTX files
                     if (fileType === 'application/pdf') {
                         countPdfPages(fileInput.files[0]);
+                        reader.readAsArrayBuffer(file);
+
                     } else if (fileType === 'application/vnd.openxmlformats-officedocument.presentationml.presentation') {
                         countPptxPages(fileInput.files[0]);
                     } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
@@ -451,10 +456,19 @@ if (isset($_POST['campus'])) {
                 var loadingTask = pdfjsLib.getDocument({ data: pdfData });
                 loadingTask.promise.then(function (pdf) {
                     var numPages = pdf.numPages;
+                    $.post("../PrintRequest/sendPrintAttributes.php",
+                        {
+                            numpage: numPages
+                        },
+                        function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status);
+                            window.location = '../PrintRequest/sendPrintAttributes.php';
+
+                        });
                     document.getElementById("uploadedFileName").textContent += ' (' + numPages + ' pages)';
                 });
             };
-            reader.readAsArrayBuffer(file);
+
         }
 
         function countPptxPages(file) {

@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-@include 'database.php';
+@include '../ConnectDB.php';
 ?>
 
 <!DOCTYPE html>

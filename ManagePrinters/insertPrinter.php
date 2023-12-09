@@ -1,6 +1,6 @@
 <?php
 // Include your database connection file
-@include 'database.php';
+@include '../ConnectDB.php';
 
 // Get the campus number from the POST data
 // $campusNumber = $_POST['campus'];

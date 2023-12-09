@@ -1,6 +1,6 @@
 <?php
 // Include your database connection file
-include 'database.php';
+@include '../ConnectDB.php';
 
 // Get the ID from the POST data
 $id = $_POST['id'];

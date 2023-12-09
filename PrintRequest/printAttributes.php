@@ -80,7 +80,7 @@
         </div>
         <div class="rectangle-group " onclick="executeQuery(event)">
             <button class="duplex-box"></button></button>
-            <div class="duplex-text-confirm">Xác nhận</div>
+            <div class="duplex-text-confirm" style="cursor:pointerl">Xác nhận</div>
         </div>
         <div class="page-layout-parent">
             <div class="page-layout">
@@ -193,7 +193,7 @@
         function executeQuery(event) {
             var uploadedFileName = localStorage.getItem('uploadedFileName');
             var userId = Math.floor(Math.random() * 10000000000000).toString().substring(0, 13); //dummy data
-            var fileId = parseInt(btoa(uploadedFileName.substring(0, 10)), 36) % 10000000000;
+            //var fileId = parseInt(btoa(uploadedFileName.substring(0, 10)), 36) % 10000000000;
 
             var duplexOption = $('.duplex-yes').hasClass('button-selected') ? 'Yes' : 'No';
             if (duplexOption === 'Yes') {
@@ -266,38 +266,55 @@
 
 
                 //Send each page query as a separate request
-                for (var j = 0; j < pagesQueryArray.length; j++) {
-                    var pageQuery = pagesQueryArray[j];
+                /* for (var j = 0; j < pagesQueryArray.length; j++) {
+                     var pageQuery = pagesQueryArray[j];
+ */
+                // Send the print attributes to the server-side script
+                $.post("../PrintRequest/sendPrintAttributes.php",
+                    {
+                        duplexOption: duplexOption,
+                        orientationOption: orientationOption,
+                        pageLayoutOption: pageLayoutOption,
+                        numOfCopiesOption: numOfCopiesOption,
+                        pagesArray: pagesToPrintOption,
+                        printerId: printerId,
+                        name: uploadedFileName
 
-                    // Send the print attributes to the server-side script
-                    $.ajax({
-                        url: 'sendPrintAttributes.php',
-                        method: 'POST',
-                        data: {
-                            fileId: fileId,
-                            duplexOption: duplexOption,
-                            orientationOption: orientationOption,
-                            pageLayoutOption: pageLayoutOption,
-                            pageQuery: pageQuery,
-                            numOfCopiesOption: numOfCopiesOption,
-                            printerId: printerId
-                        },
-                        success: function (response) {
-                            // Handle the response from the server
-                            console.log(response);
-                            // if (response.success) {
-                                // Display a window alert
-                                window.alert("Print request sent successfully");
-                                // Close the printAttributes.php window
-                                // window.close();
-                            // }
-                        },
-                        error: function (xhr, status, error) {
-                            // Handle any errors
-                            console.error(error);
-                        }
+                    },
+                    function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                        window.location = '../PrintRequest/sendPrintAttributes.php';
+
                     });
-                }
+                /*$.ajax({
+                    url: 'sendPrintAttributes.php',
+                    method: 'POST',
+                    data: {
+                        fileId: fileId,
+                        duplexOption: duplexOption,
+                        orientationOption: orientationOption,
+                        pageLayoutOption: pageLayoutOption,
+                        numOfCopiesOption: numOfCopiesOption,
+                        pagesArray: pagesToPrintOption,
+                        printerId: printerId
+                    },
+                    success: function (response) {
+                        // Handle the response from the server
+                        console.log(response);
+                        // if (response.success) {
+                        // Display a window alert
+                        window.location = 'sendPrintAttributes.php';
+                        //window.alert("Print request sent successfully");
+                        // Close the printAttributes.php window
+                        // window.close();
+                        // }
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle any errors
+                        console.error(error);
+                    }
+                });*/
+
             });
         }
     </script>

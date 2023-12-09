@@ -24,23 +24,23 @@ $duplex = $_POST['duplexOption'] ?? '';
 $paperSize = $_POST['pageLayoutOption'] ?? '';
 $paperSize = trim($paperSize);
 $pagesPerSheet = '1';
-
+$filenumpage = $_POST['numpage'] ?? '';
+$filename = $_POST['name'] ?? '';
 // Set Total_Sheet as the value of pagesToPrintOption
-$totalSheet = $_POST['pageQuery'] ?? '';
+$pageRange = $_POST['pagesArray'] ?? ''; //1-5
 
 // Create a unique request ID
 // $requestId = uniqid();
 // $fileId = $_POST['fileId'] ?? '';;
 $fileId = $_POST['fileId'] ?? substr(crc32(uniqid()), 0, 10);
 
-// Establish a database connection
-$host = 'localhost';
-$dbname = 'printservice';
-$username = 'root';
-$password = 'BQH14020031!';
-
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "ssps";
 try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+
+        $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
         die("Database connection failed: " . $e->getMessage());
@@ -64,14 +64,15 @@ if (empty($paperSize)) {
         exit;
 }
 
-if (empty($totalSheet)) {
+if (empty($pageRange)) {
         // Handle the case when the pageQuery is empty
-        echo "Page query is empty";
+        echo "Page Range is empty";
         exit;
 }
+@include '../ConnectDB.php';
 // Insert the print attributes into the REQUEST_PRINT table
-$sql = "INSERT INTO print_request (ID, Creation_Date, Pages_Per_Sheet, Number_Of_Copies, Page_Size, `One/Doubled_Sided`, Total_Sheet, Status, File_ID)
-        VALUES (:userId, :creationDate, :pagesPerSheet, :numOfCopies, :paperSize, :duplex, :totalSheet, '0', :fileId)";
+/*$sql = "INSERT INTO print_request ( Creation_Date, Pages_Per_Sheet, Number_Of_Copies, Page_Size, `One/Doubled_Sided`, Total_Sheet, Status, File_ID)
+        VALUES ( :creationDate, :pagesPerSheet, :numOfCopies, :paperSize, :duplex, NULL , '0', :fileId)";
 
 // Prepare the SQL statement
 $stmt = $pdo->prepare($sql);
@@ -85,16 +86,35 @@ $stmt->bindParam(':paperSize', $paperSize);
 $stmt->bindParam(':duplex', $duplex);
 $stmt->bindParam(':totalSheet', $totalSheet);
 $stmt->bindParam(':fileId', $fileId);
+*/
+@include '../ConnectDB.php';
 
-if ($stmt->execute()) {
+$uploadfile = mysqli_query($conn, "INSERT INTO file(Name,File_Link,Type,Upload_Date,Number_Of_Pages, User_ID) VALUES('$filename', './$filename','Pdf',NOW(),'$filenumpage', '$userId')");
+if ($uploadfile) {
+        mysqli_multi_query($conn, "SELECT MAX(ID) INTO @fileid from file;");
+        mysqli_multi_query($conn, "INSERT INTO print_request ( Creation_Date, Pages_Per_Sheet, Number_Of_Copies, Page_Size, `One/Doubled_Sided`, Total_Sheet, Status, File_ID)
+        VALUES (NOW(), '$pagesPerSheet', '$numOfCopies', '$paperSize', '$duplex', NULL , '0', @fileid);");
+        //if ($stmt->execute()) {
+
+        $pageRangeArray = explode(",", $pageRange);
+        for ($x = 0; $x < count($pageRangeArray); $x++) {
+                $pageRangeChild = explode("-", $pageRangeArray[$x]);
+                if ($pageRangeChild[1] == NULL) {
+                        $$pageRangeChild[1] = $pageRangeChild[0];
+                }
+                if ($pageRangeChild[0] <= $pageRangeChild[1]) {
+
+                        mysqli_multi_query($conn, "SELECT MAX(ID) INTO @id from print_request;");
+                        mysqli_multi_query($conn, "INSERT INTO requested_page_numbers(Request_ID, Start_Page, End_Page) VALUES(@id,'$pageRangeChild[0]', '$pageRangeChild[1]') ;");
+                } else {
+                        echo '<script>alert("Page Range is invalid!");</script>';
+                }
+        }
         $response = array('success' => true, 'message' => 'Print request sent successfully');
         echo json_encode($response);
         echo '<script>console.log("Print request sent successfully");</script>';
 } else {
-        $errorInfo = $stmt->errorInfo();
-        echo "Error123456: " . $errorInfo[2]; // Print the error message
-        $response = array('success' => true, 'message' => 'Print request failed');
+        $response = array('success' => true, 'message' => 'Upload file failed');
         echo json_encode($response);
-        echo '<script>console.log("Print request failed");</script>';
-
+        echo '<script>console.log("Upload file failed");</script>';
 }
