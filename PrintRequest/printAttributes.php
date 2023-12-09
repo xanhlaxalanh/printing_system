@@ -282,7 +282,8 @@
 
                     },
                     function (data, status) {
-                        alert("Data: " + data + "\nStatus: " + status); //update
+                        // alert("Data: " + data + "\nStatus: " + status); //update
+                        alert("Print Request sent successfully");
                         // window.location = '../PrintRequest/sendPrintAttributes.php';
 
                     });
