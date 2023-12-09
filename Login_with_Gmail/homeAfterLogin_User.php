@@ -45,7 +45,7 @@
             <div class="seperator">|</div>
 
             <div>
-                <a href="home.php" class="loglogout">Đăng xuất</a>
+                <a href="home.php" class="logout">Đăng xuất</a>
             </div>
         </div>
     </section>

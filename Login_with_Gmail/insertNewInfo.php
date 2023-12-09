@@ -1,7 +1,29 @@
 <?php
+    @include 'database.php';
+
     session_start();
 
-    @include 'database.php';
+    $ID = $_SESSION['student'];
+
+    if(isset($_POST['Change'])){
+        $c_Date_Of_Birth = $_POST['Date_Of_Birth'];
+        $c_Sex = $_POST['Sex'];
+
+        $date = DateTime::createFromFormat('Y-m-d', $c_Date_Of_Birth);
+        if (!$date || $date->format('Y-m-d') !== $c_Date_Of_Birth) {
+            echo("Ngày sinh không hợp lệ");
+            return;
+        }
+
+        $c_gender = $c_Sex == 'Nam' ? 1 : 0;
+
+        $sql = "UPDATE users SET Date_Of_Birth = '$c_Date_Of_Birth', Sex = '$c_gender' WHERE ID = $ID";
+        if(mysqi_query($conn, $sql)){
+            echo("Cập nhật thành công");
+        }else{
+            echo("Cập nhật không thành công");
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +32,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dịch vụ sinh viên</title>
+    <title>Chỉnh sửa thông tin</title>
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css" >
@@ -61,66 +83,29 @@
     <!-- body section starts -->
 
     <div class="body">
-        <h1 class="title">
-            <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
-                }
-            ?>
-        </h1>
+        <h1 class="title">Chỉnh sửa thông tin cá nhân</h1>
 
-        <div class="service-list">
-            <div><h2>
-                Họ và tên:
-                <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['name'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['name']) . '</span>';
-                }
-                ?>
-            </h2></div>
+        <form method="POST" action="">
 
-            <div><h2>
-                Email:
-                <?php
-                if (isset($_SESSION['user_info']) && !empty($_SESSION['user_info']['email'])) {
-                    echo '<span class="user-name">' . htmlspecialchars($_SESSION['user_info']['email']) . '</span>';
-                }
-                ?>
-            </h2></div>
-
-            <div><h2>
-                Năm sinh:
-                <?php
-                $email = $_SESSION['user_info']['email'];
-                $get = mysqli_query($conn, "select Date_Of_Birth from users where email = '$email' ");
-                $getData = $get->fetch_all(MYSQLI_ASSOC);
-                $Date_Of_Birth = $getData[0]['Date_Of_Birth'];
-                echo '<span class="user-name">' . htmlspecialchars($Date_Of_Birth) . '</span>';
-                ?>
-            </h2></div>
-
-            <div><h2>
-                Giới tính:
-                <?php
-                $email = $_SESSION['user_info']['email'];
-                $get = mysqli_query($conn, "select Sex from users where email = '$email' ");
-                $getData = $get->fetch_all(MYSQLI_ASSOC);
-                $Sex = $getData[0]['Sex'];
-                if($Sex == '0'){
-                    $x = "Nữ";
-                    echo '<span class="user-name">' . htmlspecialchars($x) . '</span>';
-                }else if($Sex == '1'){
-                    $x = "Nam";
-                    echo '<span class="user-name">' . htmlspecialchars($x) . '</span>';
-                }
-                ?>
-            </h2></div>
-
-            <form method ="POST" action="insertNewInfo.php" class="registration">
-                <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
-            </form>
-
+        <div class="form-group">
+            <label for="Date_Of_Birth">Năm sinh: </label>
+            <input type="date" name="Date_Of_Birth" class="form-control" placeholder="YYYY-MM-DD">
         </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="Sex">Giới tính: </label>
+            <select name="Sex" class="form-control">
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+            </select>
+        </div>
+
+        <br>
+
+        <button type="submit" class="submit-order" name="Change">Thay đổi thông tin</button>
+        </form>
 
     </div>
 
