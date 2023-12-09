@@ -87,7 +87,7 @@ $Role = $_SESSION['role'];
             <img src="../images/message.jpg" width="50px" height="50px">
             <div class="popup_text">
                 <h3 style="margin-top:5%; color:var(--main-color)">Gửi yêu cầu in</h3>
-                <table style="height:250px;display:block;">
+                <table>
                     <tr>
                         <td>
                         <th class="title_"><i class="ri-timer-fill"></i>Thời gian hiện tại:</th>
