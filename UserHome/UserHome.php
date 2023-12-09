@@ -49,26 +49,27 @@
                     </script>
                 
             </div>
-
-            <div class="right-side">
-                <div class="username">
-                    <a id="info" href=""><?php echo $Username; ?></a>
-                    <script>
-                        var info = document.getElementById('info');
-                        var role = "<?php echo $Role; ?>";
-                        if (role == "Student") {
-                            info.href = "../Login_with_Gmail/infoUser.php";
-                        }
-                        else{
-                            info.href = "../Login_with_Gmail/infoManage.php";
-                        }
-                    </script>
-                </div>
-                <div class="seperator">|</div>
-                <div>
-                    <a href="../Login_with_Gmail/home.php" class="logout">Đăng xuất</a>
-                </div>
+        </div>
+        <div class="right-side">
+            <div class="username">
+                <a id="info" href=""><?php echo $Username; ?></a>
+                <script>
+                    var info = document.getElementById('info');
+                    var role = "<?php echo $Role; ?>";
+                    if (role == "Student") {
+                        info.href = "../Login_with_Gmail/infoUser.php";
+                    }
+                    else{
+                        info.href = "../Login_with_Gmail/infoManage.php";
+                    }
+                </script>
             </div>
+            <div class="seperator">|</div>
+            <div>
+                <a href="../Login_with_Gmail/home.php" class="logout">Đăng xuất</a>
+            </div>
+        </div>
+        
     </section>
     <!-- header section ends -->
 

@@ -1,3 +1,27 @@
+.header .right-side {
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    min-width: 200px;
+    justify-content: space-around;
+}
+
+.header .right-side .username,
+.header .right-side .seperator {
+    font-size: 16px;
+    color: #676c70;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.header .right-side .seperator {
+    padding: 5px;
+}
+
+.header .right-side .username:hover {
+    text-decoration: underline;
+}
+
 .body form .default-number-of-pages, .refill-date-container, .accepted-file-type-container, .paper-price-container {
     margin-top: 27px;
     color: #676C70;
