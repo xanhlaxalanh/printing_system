@@ -206,7 +206,8 @@
 
             var chart = new CanvasJS.Chart("chartContainer", {
                 title: {
-                    text: "Thống kê số page Sinh viên đã in"
+                    text: "Thống kê số page Sinh viên đã in",
+                    fontFamily: "Arial",
                 },
                 axisY: {
                     title: "Tổng số page"
