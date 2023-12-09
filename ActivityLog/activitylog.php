@@ -190,7 +190,7 @@ $Role = $_SESSION['role'];
                 <h4 style="color:var(--text-color)">Bạn có chắc chắn muốn xóa không?</h4>
             </div>
             <div class="button-group">
-                <button onclick="ClosePopup(\'DELETE_popup\',\'activitylog.php\')" class="button" type="button">Thoát</button>
+                <button onclick="ClosePopup(\'DELETE_popup\',\'activitylog.php\')" class="button" type="button">Hủy</button>
                 <a class="button" href="delete_activitylog.php?id=' . $delete_id . '">Xóa</a>
             </div>
         </div>';
