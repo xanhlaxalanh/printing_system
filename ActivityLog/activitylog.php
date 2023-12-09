@@ -145,7 +145,7 @@ $Role = $_SESSION['role'];
                         </td>
                     </tr>
                         <td>
-                        <th class="title_"><i class="ri-money-dollar-circle-fill"></i>Số page bị trừ vào ví:</th>
+                        <th class="title_"><i class="ri-money-dollar-circle-fill"></i>Số trang bị trừ vào ví:</th>
                         </td>
                         <td>
                             ' . $getdata[0]["Total_Sheet"] . '
@@ -309,12 +309,12 @@ $Role = $_SESSION['role'];
                         <th>Thời gian bắt đầu in</th>
                         <th>Thời gian kết thúc in</th>
                         <th>Nội dung đăng ký in</th>
-                        <th>Tổng số page</th>
+                        <th>Tổng số trang</th>
                         <th>Số mặt</th>
                         <th>Số bản copy</th>
                         <th>Số trang trên giấy in</th>
                         <th>Khổ giấy</th>
-                        <th>Số page bị trừ trong ví</th>
+                        <th>Số trang bị trừ trong ví</th>
                         <th>Mã máy in</th>
                         <th>Trạng thái</th>
                         <th>Tùy chọn</th>
@@ -377,16 +377,16 @@ echo "<p style='border:None; color:var(--text-color); font-weight:500; font-size
                                     <div class="dropdown" style="float:right;">
                                     <i style="font-size:25px" class="ri-arrow-down-s-fill dropbtn"></i>
                                     <div class="dropdown-content">
-                                        <a href="activitylog.php?send_id=' . $row['requestid'] . '">Send</a>
-                                        <a href="activitylog.php?delete_id=' . $row['requestid'] . '">Delete</a>
+                                        <a href="activitylog.php?send_id=' . $row['requestid'] . '">Gửi</a>
+                                        <a href="activitylog.php?delete_id=' . $row['requestid'] . '">Xóa</a>
                                     </div>
                                 </div>';
                                 } else {
                                     echo '<div style="pointer-events: none; " class="dropdown" style="float:right;">
                                     <i style="font-size:25px;margin-left: 12rem;" class="ri-arrow-down-s-fill dropbtn"></i>
                                     <div class="dropdown-content">
-                                        <a href="activitylog.php?send_id=' . $row['requestid'] . '">Send</a>
-                                        <a href="activitylog.php?delete_id=' . $row['requestid'] . '">Delete</a>
+                                        <a href="activitylog.php?send_id=' . $row['requestid'] . '">Gửi</a>
+                                        <a href="activitylog.php?delete_id=' . $row['requestid'] . '">Xóa</a>
                                     </div>
                                 </div>';
                                 }
