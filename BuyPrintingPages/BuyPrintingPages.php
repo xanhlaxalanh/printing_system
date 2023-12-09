@@ -1,9 +1,14 @@
 <?php
 session_start();
 
+<<<<<<< HEAD
 $ID = $_SESSION['id'];
 $Username = $_SESSION['username'];
 $Role = $_SESSION['role'];
+=======
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+>>>>>>> 1a64adf31e2d42e0dca3328ac98bfb18d9065245
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +75,18 @@ $Role = $_SESSION['role'];
             // Get Balance
             $sql = "SELECT Balance 
                     FROM Users
+<<<<<<< HEAD
                     WHERE ID =" . $ID;
             $result = $conn->query($sql);
+=======
+                    WHERE ID = '$ID'";
+                $result = $conn->query($sql);
+            
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $balance = $row['Balance'];
+                }
+>>>>>>> 1a64adf31e2d42e0dca3328ac98bfb18d9065245
 
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
@@ -87,6 +102,10 @@ $Role = $_SESSION['role'];
             <input type="number" id="quantity" name="quantity" placeholder="Số lượng trang (Khổ A4)" min="1">
             <button type="submit" id="submit-order" name='submit-order' class="submit-order">Đăng ký</button>
         </form>
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 1a64adf31e2d42e0dca3328ac98bfb18d9065245
 
         <?php
         // Get Paper_Price
