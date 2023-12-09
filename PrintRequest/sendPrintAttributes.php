@@ -4,8 +4,8 @@ session_start();
 
 // session_start();
 // $userId = $_SESSION['userId'];
-if (isset($_SESSION['student_id']) && !empty($_SESSION['student_id'])) {
-        $userId = $_SESSION['student_id'];
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+        $userId = $_SESSION['id'];
 } else {
         $userId = 1234567;
 }

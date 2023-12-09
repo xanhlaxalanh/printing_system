@@ -48,7 +48,7 @@
                 </a></div>
             <div class="seperator">|</div>
             <div>
-                <a href="login.php" class="login">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="login">Đăng xuất</a>
             </div>
         </div>
     </section>

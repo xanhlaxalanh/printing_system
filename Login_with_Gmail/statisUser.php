@@ -50,7 +50,7 @@
             </div>
             <div class="seperator">|</div>
             <div>
-                <a href="#" class="logout">Đăng xuất</a>
+                <a href="../Login_with_Gmail/home.php" class="logout">Đăng xuất</a>
             </div>
         </div>
     </section>
