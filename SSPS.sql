@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 09, 2023 at 11:15 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: localhost
+-- Thời gian đã tạo: Th12 09, 2023 lúc 02:26 PM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,9 +18,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ssps`
+-- Cơ sở dữ liệu: `SSPS`
 --
-
 DELIMITER $$
 --
 -- Procedures
@@ -83,8 +82,10 @@ DELIMITER ;
 
 -- --------------------------------------------------------
 
+-- --------------------------------------------------------
+
 --
--- Table structure for table `accepted_file_types`
+-- Cấu trúc bảng cho bảng `accepted_file_types`
 --
 
 CREATE TABLE `accepted_file_types` (
@@ -92,17 +93,18 @@ CREATE TABLE `accepted_file_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `accepted_file_types`
+-- Đang đổ dữ liệu cho bảng `accepted_file_types`
 --
 
 INSERT INTO `accepted_file_types` (`File_Type`) VALUES
 ('.jpeg'),
+('.pdf'),
 ('.php');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bpp_order`
+-- Cấu trúc bảng cho bảng `bpp_order`
 --
 
 CREATE TABLE `bpp_order` (
@@ -114,21 +116,16 @@ CREATE TABLE `bpp_order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `bpp_order`
+-- Đang đổ dữ liệu cho bảng `bpp_order`
 --
 
 INSERT INTO `bpp_order` (`Order_ID`, `Order_Creation_Date`, `Quantity`, `Payment_Status`, `Owner_ID`) VALUES
-(1, '2023-12-06 22:19:10', 45, 1, 13),
-(2, '2023-12-06 22:19:53', 12, 1, 13),
-(45, '2023-12-09 10:52:29', 35, 0, 1),
-(46, '2023-12-09 10:59:35', 45, 0, 1),
-(47, '2023-12-09 10:59:42', 34, 0, 1),
-(48, '2023-12-09 11:28:28', 12, 1, 13);
+(50, '2023-12-09 20:20:33', 12, 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `campus_building`
+-- Cấu trúc bảng cho bảng `campus_building`
 --
 
 CREATE TABLE `campus_building` (
@@ -137,7 +134,7 @@ CREATE TABLE `campus_building` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `campus_building`
+-- Đang đổ dữ liệu cho bảng `campus_building`
 --
 
 INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) VALUES
@@ -156,7 +153,7 @@ INSERT INTO `campus_building` (`printer_campusloc`, `printer_buildingloc`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `configuration`
+-- Cấu trúc bảng cho bảng `configuration`
 --
 
 CREATE TABLE `configuration` (
@@ -166,16 +163,16 @@ CREATE TABLE `configuration` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `configuration`
+-- Đang đổ dữ liệu cho bảng `configuration`
 --
 
 INSERT INTO `configuration` (`ID`, `Default_Number_Of_Pages`, `Paper_Price`) VALUES
-(0, 60, 400);
+(0, 100, 350);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file`
+-- Cấu trúc bảng cho bảng `file`
 --
 
 CREATE TABLE `file` (
@@ -189,7 +186,7 @@ CREATE TABLE `file` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `file`
+-- Đang đổ dữ liệu cho bảng `file`
 --
 
 INSERT INTO `file` (`ID`, `Name`, `File_Link`, `Type`, `Upload_Date`, `Number_Of_Pages`, `User_ID`) VALUES
@@ -323,7 +320,7 @@ INSERT INTO `file` (`ID`, `Name`, `File_Link`, `Type`, `Upload_Date`, `Number_Of
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perform`
+-- Cấu trúc bảng cho bảng `perform`
 --
 
 CREATE TABLE `perform` (
@@ -335,7 +332,7 @@ CREATE TABLE `perform` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `perform`
+-- Đang đổ dữ liệu cho bảng `perform`
 --
 
 INSERT INTO `perform` (`Request_ID`, `Printer_ID`, `Start_Time`, `End_Time`, `Completed_Printing_Pages`) VALUES
@@ -463,7 +460,7 @@ INSERT INTO `perform` (`Request_ID`, `Printer_ID`, `Start_Time`, `End_Time`, `Co
 -- --------------------------------------------------------
 
 --
--- Table structure for table `printer_list`
+-- Cấu trúc bảng cho bảng `printer_list`
 --
 
 CREATE TABLE `printer_list` (
@@ -477,7 +474,7 @@ CREATE TABLE `printer_list` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `printer_list`
+-- Đang đổ dữ liệu cho bảng `printer_list`
 --
 
 INSERT INTO `printer_list` (`printer_id`, `printer_name`, `printer_desc`, `printer_avai`, `printer_campusloc`, `printer_buildingloc`, `printer_room`) VALUES
@@ -502,7 +499,7 @@ INSERT INTO `printer_list` (`printer_id`, `printer_name`, `printer_desc`, `print
 -- --------------------------------------------------------
 
 --
--- Table structure for table `print_request`
+-- Cấu trúc bảng cho bảng `print_request`
 --
 
 CREATE TABLE `print_request` (
@@ -518,7 +515,7 @@ CREATE TABLE `print_request` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `print_request`
+-- Đang đổ dữ liệu cho bảng `print_request`
 --
 
 INSERT INTO `print_request` (`ID`, `Creation_Date`, `Pages_Per_Sheet`, `Number_Of_Copies`, `Page_Size`, `One/Doubled_Sided`, `Total_Sheet`, `Status`, `File_ID`) VALUES
@@ -645,7 +642,7 @@ INSERT INTO `print_request` (`ID`, `Creation_Date`, `Pages_Per_Sheet`, `Number_O
 (445, '2023-12-09 17:07:09', '1', 2, 'A4', '1', 6, '0', 265);
 
 --
--- Triggers `print_request`
+-- Bẫy `print_request`
 --
 DELIMITER $$
 CREATE TRIGGER `UpdateStarttime` AFTER UPDATE ON `print_request` FOR EACH ROW BEGIN
@@ -684,7 +681,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `refill_dates`
+-- Cấu trúc bảng cho bảng `refill_dates`
 --
 
 CREATE TABLE `refill_dates` (
@@ -692,16 +689,16 @@ CREATE TABLE `refill_dates` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `refill_dates`
+-- Đang đổ dữ liệu cho bảng `refill_dates`
 --
 
 INSERT INTO `refill_dates` (`Refill_Date`) VALUES
-('2023-12-06 22:04:25');
+('2023-12-09 20:26:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `requested_page_numbers`
+-- Cấu trúc bảng cho bảng `requested_page_numbers`
 --
 
 CREATE TABLE `requested_page_numbers` (
@@ -711,7 +708,7 @@ CREATE TABLE `requested_page_numbers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `requested_page_numbers`
+-- Đang đổ dữ liệu cho bảng `requested_page_numbers`
 --
 
 INSERT INTO `requested_page_numbers` (`Request_ID`, `Start_Page`, `End_Page`) VALUES
@@ -837,7 +834,7 @@ INSERT INTO `requested_page_numbers` (`Request_ID`, `Start_Page`, `End_Page`) VA
 (445, 1, 3);
 
 --
--- Triggers `requested_page_numbers`
+-- Bẫy `requested_page_numbers`
 --
 DELIMITER $$
 CREATE TRIGGER `Totalsheet` AFTER INSERT ON `requested_page_numbers` FOR EACH ROW BEGIN
@@ -850,7 +847,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
@@ -865,190 +862,196 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`ID`, `Fname`, `Lname`, `Email`, `Role`, `Sex`, `Date_Of_Birth`, `Balance`) VALUES
-(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'Student', 0, '2003-12-12', 600),
-(3, 'Công', 'Bùi', 'buichiencung@gmail.com', 'Student', 1, '0000-00-00', 600),
-(4, 'Bình', 'Bùi', 'buithanhbinh@gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(5, 'Tâm', 'Bùi', 'buithimytam@gmail.com', 'Student', 0, '0000-00-00', 600),
-(6, 'Vĩnh', 'Đặng', 'dangvanvinh@gmail.com', 'Student', 1, '0000-00-00', 600),
-(7, 'Bình', 'Danh', 'danhbinh@gmail.com', 'Student', 1, '0000-00-00', 600),
-(8, 'Hoàng', 'Đinh', 'dinhtienhoang@gmail.com', 'Student', 1, '0000-00-00', 600),
-(9, 'Hiếu', 'Đoàn', 'doanngochieu@gmail.com', 'Student', 1, '0000-00-00', 600),
-(10, 'Minh', 'Đoàn', 'doanthiminh@gmail.com', 'Student', 0, '0000-00-00', 600),
-(11, 'Phát', 'Đoàn', 'doanthuanphat@gmail.com', 'Student', 1, '0000-00-00', 600),
-(12, 'Hùng', 'Đỗ', 'doquochung @gmail.com', 'SPSO', 0, '0000-00-00', 600),
-(13, 'Hào', 'Hà', 'haphuchao @gmail.com', 'Student', 1, '0000-00-00', 600),
-(14, 'Khánh', 'Hoàng', 'hoangmanhkhanh@gmail.com', 'Student', 1, '0000-00-00', 600),
-(15, 'Nghĩa', 'Hoàng', 'hoangminhnghia@gmail.com', 'Student', 1, '0000-00-00', 600),
-(16, 'Vũ', 'Hùng', 'hungnguyenvu@gmail.com', 'Student', 1, '0000-00-00', 600),
-(17, 'Ngân', 'Huỳnh', 'huynhthingan@gmail.com', 'Student', 0, '0000-00-00', 600),
-(18, 'Mạnh', 'Huỳnh', 'huynhvanmanh@gmail.com', 'Student', 1, '0000-00-00', 600),
-(19, 'Hiếu', 'Lê', 'ledinhhieu@gmail.com', 'Student', 1, '0000-00-00', 600),
-(20, 'An', 'Lê', 'lehoangan@gmail.com', 'Student', 0, '0000-00-00', 600),
-(21, 'Duyên', 'Lê', 'lemyduyen@gmail.com', 'Student', 0, '0000-00-00', 600),
-(22, 'Sơn', 'Lê', 'lethanhson@gmail.com', 'Student', 1, '0000-00-00', 600),
-(23, 'Quân', 'Lê', 'letranminhquan @gmail.com', 'Student', 1, '0000-00-00', 600),
-(24, 'Cường', 'Lê', 'levietcuong@gmail.com', 'Student', 1, '0000-00-00', 600),
-(25, 'Bằng', 'Nguyễn', 'nguyencaobang@gmail.com', 'Student', 1, '0000-00-00', 600),
-(26, 'Sơn', 'Nguyễn', 'nguyencongson@gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(27, 'Huy', 'Nguyễn', 'nguyengiahuy@gmail.com', 'Student', 1, '0000-00-00', 600),
-(28, 'Khánh', 'Nguyễn', 'nguyengiakhanh@gmail.com', 'Student', 1, '0000-00-00', 600),
-(29, 'Thọ', 'Nguyễn', 'nguyenhoangtho@gmail.com', 'Student', 1, '0000-00-00', 600),
-(30, 'Hiếu', 'Nguyễn', 'nguyenhuuhieu@gmail.com', 'Student', 1, '0000-00-00', 600),
-(31, 'Ly', 'Nguyễn', 'nguyenkhanhly@gmail.com', 'SPSO', 0, '0000-00-00', 600),
-(32, 'Tài', 'Nguyễn', 'nguyenlytai@gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(33, 'Việt', 'Nguyễn', 'nguyenthaiviet @gmail.com', 'Student', 1, '0000-00-00', 600),
-(34, 'Bằng', 'Nguyễn Thế', 'nguyenthebang@gmail.com', 'Student', 1, '0000-00-00', 600),
-(35, 'Trâm', 'Nguyễn', 'nguyentram@gmail.com', 'SPSO', 0, '0000-00-00', 600),
-(36, 'Hưng', 'Nguyễn', 'nguyentrihung @gmail.com', 'Student', 1, '0000-00-00', 600),
-(37, 'Sơn', 'Nguyễn', 'nguyentuanson @gmail.com', 'Student', 1, '0000-00-00', 600),
-(38, 'Huy', 'Nguyễn', 'nguyenvuhuy @gmail.com', 'Student', 1, '0000-00-00', 600),
-(39, 'Hiển', 'Nguyễn', 'nguyenxuanhien @gmail.com', 'Student', 1, '0000-00-00', 600),
-(40, 'Nhi', 'Nguyễn', 'nguyenynhi@gmail.com', 'Student', 0, '0000-00-00', 600),
-(41, 'Minh', 'Phạm', 'phamthiminh@gmail.com', 'Student', 0, '0000-00-00', 600),
-(42, 'Hiếu', 'Phạm', 'phamtienhieu@gmail.com', 'Student', 1, '0000-00-00', 600),
-(43, 'Nguyên', 'Phan', 'phantannguyen@gmail.com', 'Student', 1, '0000-00-00', 600),
-(44, 'Phát', 'Phan', 'phantanphat@gmail.com', 'Student', 1, '0000-00-00', 600),
-(45, 'Lộc', 'Phan', 'phantienloc@gmail.com', 'Student', 1, '0000-00-00', 600),
-(46, 'Huy', 'Trần', 'trandinhhuy @gmail.com', 'Student', 1, '0000-00-00', 600),
-(47, 'Thịnh', 'Trần', 'tranquocthinh @gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(48, 'Nhân', 'Trần', 'tranthenhan@gmail.com', 'Student', 1, '0000-00-00', 600),
-(49, 'Hạnh', 'Trần', 'tranthimyhanh@gmail.com', 'Student', 0, '0000-00-00', 600),
-(50, 'Tâm', 'Trần Thị', 'tranthithanhtam @gmail.com', 'SPSO', 0, '0000-00-00', 600),
-(51, 'Thành', 'Võ', 'votrithanh@gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(52, 'Diện', 'Vũ', 'vutoandien@gmail.com', 'SPSO', 1, '0000-00-00', 600),
-(53, 'THI', 'PHAN PHẠM', 'thi.phanpham@hcmut.edu.vn', 'Student', 0, '2003-10-17', 600),
-(54, 'Ngân', 'Lê Thị Kim', 'ngan.lengan2003@hcmut.edu.vn', 'SPSO', 0, '2003-02-21', 0);
+(1, 'Dương', 'Hà Thuỳ', 'duong.hathuy@hcmut.edu.vn', 'SPSO', 0, '2003-12-12', 712),
+(3, 'Công', 'Bùi', 'buichiencung@gmail.com', 'Student', 1, '0000-00-00', 700),
+(4, 'Bình', 'Bùi', 'buithanhbinh@gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(5, 'Tâm', 'Bùi', 'buithimytam@gmail.com', 'Student', 0, '0000-00-00', 700),
+(6, 'Vĩnh', 'Đặng', 'dangvanvinh@gmail.com', 'Student', 1, '0000-00-00', 700),
+(7, 'Bình', 'Danh', 'danhbinh@gmail.com', 'Student', 1, '0000-00-00', 700),
+(8, 'Hoàng', 'Đinh', 'dinhtienhoang@gmail.com', 'Student', 1, '0000-00-00', 700),
+(9, 'Hiếu', 'Đoàn', 'doanngochieu@gmail.com', 'Student', 1, '0000-00-00', 700),
+(10, 'Minh', 'Đoàn', 'doanthiminh@gmail.com', 'Student', 0, '0000-00-00', 700),
+(11, 'Phát', 'Đoàn', 'doanthuanphat@gmail.com', 'Student', 1, '0000-00-00', 700),
+(12, 'Hùng', 'Đỗ', 'doquochung @gmail.com', 'SPSO', 0, '0000-00-00', 700),
+(13, 'Hào', 'Hà', 'haphuchao @gmail.com', 'Student', 1, '0000-00-00', 700),
+(14, 'Khánh', 'Hoàng', 'hoangmanhkhanh@gmail.com', 'Student', 1, '0000-00-00', 700),
+(15, 'Nghĩa', 'Hoàng', 'hoangminhnghia@gmail.com', 'Student', 1, '0000-00-00', 700),
+(16, 'Vũ', 'Hùng', 'hungnguyenvu@gmail.com', 'Student', 1, '0000-00-00', 700),
+(17, 'Ngân', 'Huỳnh', 'huynhthingan@gmail.com', 'Student', 0, '0000-00-00', 700),
+(18, 'Mạnh', 'Huỳnh', 'huynhvanmanh@gmail.com', 'Student', 1, '0000-00-00', 700),
+(19, 'Hiếu', 'Lê', 'ledinhhieu@gmail.com', 'Student', 1, '0000-00-00', 700),
+(20, 'An', 'Lê', 'lehoangan@gmail.com', 'Student', 0, '0000-00-00', 700),
+(21, 'Duyên', 'Lê', 'lemyduyen@gmail.com', 'Student', 0, '0000-00-00', 700),
+(22, 'Sơn', 'Lê', 'lethanhson@gmail.com', 'Student', 1, '0000-00-00', 700),
+(23, 'Quân', 'Lê', 'letranminhquan @gmail.com', 'Student', 1, '0000-00-00', 700),
+(24, 'Cường', 'Lê', 'levietcuong@gmail.com', 'Student', 1, '0000-00-00', 700),
+(25, 'Bằng', 'Nguyễn', 'nguyencaobang@gmail.com', 'Student', 1, '0000-00-00', 700),
+(26, 'Sơn', 'Nguyễn', 'nguyencongson@gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(27, 'Huy', 'Nguyễn', 'nguyengiahuy@gmail.com', 'Student', 1, '0000-00-00', 700),
+(28, 'Khánh', 'Nguyễn', 'nguyengiakhanh@gmail.com', 'Student', 1, '0000-00-00', 700),
+(29, 'Thọ', 'Nguyễn', 'nguyenhoangtho@gmail.com', 'Student', 1, '0000-00-00', 700),
+(30, 'Hiếu', 'Nguyễn', 'nguyenhuuhieu@gmail.com', 'Student', 1, '0000-00-00', 700),
+(31, 'Ly', 'Nguyễn', 'nguyenkhanhly@gmail.com', 'SPSO', 0, '0000-00-00', 700),
+(32, 'Tài', 'Nguyễn', 'nguyenlytai@gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(33, 'Việt', 'Nguyễn', 'nguyenthaiviet @gmail.com', 'Student', 1, '0000-00-00', 700),
+(34, 'Bằng', 'Nguyễn Thế', 'nguyenthebang@gmail.com', 'Student', 1, '0000-00-00', 700),
+(35, 'Trâm', 'Nguyễn', 'nguyentram@gmail.com', 'SPSO', 0, '0000-00-00', 700),
+(36, 'Hưng', 'Nguyễn', 'nguyentrihung @gmail.com', 'Student', 1, '0000-00-00', 700),
+(37, 'Sơn', 'Nguyễn', 'nguyentuanson @gmail.com', 'Student', 1, '0000-00-00', 700),
+(38, 'Huy', 'Nguyễn', 'nguyenvuhuy @gmail.com', 'Student', 1, '0000-00-00', 700),
+(39, 'Hiển', 'Nguyễn', 'nguyenxuanhien @gmail.com', 'Student', 1, '0000-00-00', 700),
+(40, 'Nhi', 'Nguyễn', 'nguyenynhi@gmail.com', 'Student', 0, '0000-00-00', 700),
+(41, 'Minh', 'Phạm', 'phamthiminh@gmail.com', 'Student', 0, '0000-00-00', 700),
+(42, 'Hiếu', 'Phạm', 'phamtienhieu@gmail.com', 'Student', 1, '0000-00-00', 700),
+(43, 'Nguyên', 'Phan', 'phantannguyen@gmail.com', 'Student', 1, '0000-00-00', 700),
+(44, 'Phát', 'Phan', 'phantanphat@gmail.com', 'Student', 1, '0000-00-00', 700),
+(45, 'Lộc', 'Phan', 'phantienloc@gmail.com', 'Student', 1, '0000-00-00', 700),
+(46, 'Huy', 'Trần', 'trandinhhuy @gmail.com', 'Student', 1, '0000-00-00', 700),
+(47, 'Thịnh', 'Trần', 'tranquocthinh @gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(48, 'Nhân', 'Trần', 'tranthenhan@gmail.com', 'Student', 1, '0000-00-00', 700),
+(49, 'Hạnh', 'Trần', 'tranthimyhanh@gmail.com', 'Student', 0, '0000-00-00', 700),
+(50, 'Tâm', 'Trần Thị', 'tranthithanhtam @gmail.com', 'SPSO', 0, '0000-00-00', 700),
+(51, 'Thành', 'Võ', 'votrithanh@gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(52, 'Diện', 'Vũ', 'vutoandien@gmail.com', 'SPSO', 1, '0000-00-00', 700),
+(53, 'THI', 'PHAN PHẠM', 'thi.phanpham@hcmut.edu.vn', 'Student', 0, '2003-10-17', 700),
+(54, 'Ngân', 'Lê Thị Kim', 'ngan.lengan2003@hcmut.edu.vn', 'SPSO', 0, '2003-02-21', 100);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `accepted_file_types`
+-- Chỉ mục cho bảng `accepted_file_types`
 --
 ALTER TABLE `accepted_file_types`
   ADD UNIQUE KEY `File_Type` (`File_Type`);
 
 --
--- Indexes for table `bpp_order`
+-- Chỉ mục cho bảng `bpp_order`
 --
 ALTER TABLE `bpp_order`
   ADD PRIMARY KEY (`Order_ID`),
   ADD KEY `Owner_ID` (`Owner_ID`);
 
 --
--- Indexes for table `campus_building`
+-- Chỉ mục cho bảng `campus_building`
 --
 ALTER TABLE `campus_building`
   ADD PRIMARY KEY (`printer_campusloc`,`printer_buildingloc`);
 
 --
--- Indexes for table `file`
+-- Chỉ mục cho bảng `file`
 --
 ALTER TABLE `file`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_file_userId` (`User_ID`);
 
 --
--- Indexes for table `perform`
+-- Chỉ mục cho bảng `perform`
 --
 ALTER TABLE `perform`
   ADD PRIMARY KEY (`Request_ID`,`Printer_ID`);
 
 --
--- Indexes for table `printer_list`
+-- Chỉ mục cho bảng `printer_list`
 --
 ALTER TABLE `printer_list`
   ADD PRIMARY KEY (`printer_id`),
   ADD KEY `printer_list_campus_building_ibfk_1` (`printer_campusloc`,`printer_buildingloc`);
 
 --
--- Indexes for table `print_request`
+-- Chỉ mục cho bảng `print_request`
 --
 ALTER TABLE `print_request`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `File_ID` (`File_ID`);
 
 --
--- Indexes for table `refill_dates`
+-- Chỉ mục cho bảng `refill_dates`
 --
 ALTER TABLE `refill_dates`
   ADD PRIMARY KEY (`Refill_Date`);
 
 --
--- Indexes for table `requested_page_numbers`
+-- Chỉ mục cho bảng `requested_page_numbers`
 --
 ALTER TABLE `requested_page_numbers`
   ADD PRIMARY KEY (`Request_ID`,`Start_Page`,`End_Page`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `bpp_order`
+-- AUTO_INCREMENT cho bảng `bpp_order`
 --
 ALTER TABLE `bpp_order`
-  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `Order_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT for table `file`
+-- AUTO_INCREMENT cho bảng `file`
 --
 ALTER TABLE `file`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=266;
 
 --
--- AUTO_INCREMENT for table `print_request`
+-- AUTO_INCREMENT cho bảng `print_request`
 --
 ALTER TABLE `print_request`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=446;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `file`
+-- Các ràng buộc cho bảng `bpp_order`
+--
+ALTER TABLE `bpp_order`
+  ADD CONSTRAINT `bpp_order_ibfk_1` FOREIGN KEY (`Owner_ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Các ràng buộc cho bảng `file`
 --
 ALTER TABLE `file`
   ADD CONSTRAINT `FK_file_userId` FOREIGN KEY (`User_ID`) REFERENCES `users` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `perform`
+-- Các ràng buộc cho bảng `perform`
 --
 ALTER TABLE `perform`
   ADD CONSTRAINT `perform_ibfk_1` FOREIGN KEY (`Request_ID`) REFERENCES `print_request` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `printer_list`
+-- Các ràng buộc cho bảng `printer_list`
 --
 ALTER TABLE `printer_list`
   ADD CONSTRAINT `printer_list_campus_building_ibfk_1` FOREIGN KEY (`printer_campusloc`,`printer_buildingloc`) REFERENCES `campus_building` (`printer_campusloc`, `printer_buildingloc`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `print_request`
+-- Các ràng buộc cho bảng `print_request`
 --
 ALTER TABLE `print_request`
   ADD CONSTRAINT `print_request_ibfk_1` FOREIGN KEY (`File_ID`) REFERENCES `file` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `requested_page_numbers`
+-- Các ràng buộc cho bảng `requested_page_numbers`
 --
 ALTER TABLE `requested_page_numbers`
   ADD CONSTRAINT `requested_page_numbers_ibfk_1` FOREIGN KEY (`Request_ID`) REFERENCES `print_request` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
