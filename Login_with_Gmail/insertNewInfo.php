@@ -36,6 +36,7 @@ if (isset($_POST['Change'])) {
 
     <!-- custom css file link -->
     <link rel="stylesheet" type="text/css" href="../style.css">
+    <link rel="stylesheet" type="text/css" href="../custom_style.css">
     <link rel="stylesheet" type="text/css" href="../BuyPrintingPages/BuyPrintingPages.css">
 
 </head>
@@ -85,7 +86,7 @@ if (isset($_POST['Change'])) {
 
     <div class="body">
         <h1 class="title">Chỉnh sửa thông tin cá nhân</h1>
-
+        <br>
         <form method="POST" action="">
 
             <div class="form-group">
