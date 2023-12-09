@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 @include '../ConnectDB.php';
-=======
-@include 'database.php';
->>>>>>> e3a1375b25a3dd63d984f9c5f8f798366080d07a
 
 session_start();
 
