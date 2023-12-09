@@ -1,6 +1,12 @@
 <?php
     @include_once("../ConnectDB.php");
 
+    session_start();
+
+    $ID = $_SESSION['id'];
+    $Username = $_SESSION['username'];
+    $Role = $_SESSION['role'];
+
     // Save the new order to DB
     if(isset($_POST['submit-order'])) {
         // Get Quantity
@@ -12,7 +18,7 @@
 
         // INSERT into DB
         $sql = "INSERT INTO BPP_Order (Order_ID, Order_Creation_Date, Quantity, Payment_Status, Owner_ID)
-                VALUES (NULL, '$date', '$quantity', '0', '1')
+                VALUES (NULL, '$date', '$quantity', '0', '$ID')
                 ";
 
         $conn->query($sql);
