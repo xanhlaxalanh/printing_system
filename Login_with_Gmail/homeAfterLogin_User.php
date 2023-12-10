@@ -61,7 +61,7 @@
         <h1 class="title">dịch vụ của tôi</h1>
 
         <div class="service-list">
-            <div><a href="../PrintRequest/printRequest.php">đăng kí in tài liệu</a></div>
+            <div><a href="../PrintRequest/BeforeLoad.php">đăng kí in tài liệu</a></div>
             <div><a href="../BuyPrintingPages/BeforeLoad.php">mua thêm trang in</a></div>
             <div class="last-service"><a href="../ActivityLog/BeforeLoad.php">nhật kí sử dụng dịch vụ in</a></div>
         </div>
